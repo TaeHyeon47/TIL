@@ -235,7 +235,7 @@ BMI (28.3) is higher than John's (23.9)!"
 //   console.log("Not a valid Day!");
 // }
 
-/////////////////////////////////////////
+////////////////////////////////////////
 ///// Statements and Expressions ///////
 ////////////////////////////////////////
 
@@ -257,3 +257,33 @@ BMI (28.3) is higher than John's (23.9)!"
 // JavaScript expects statements and expressions in different places.
 // In a template literal, we can only insert expressions, but not statements.
 // ex) console.log(`I'm ${2037 - 1991} years old.)
+
+///////////////////////////////////////////////
+///// The Conditional (Ternary) Opeator ///////
+///////////////////////////////////////////////
+
+const age = 23;
+age >= 18
+  ? console.log("I like to drink wine")
+  : console.log("I like to drink water");
+
+// Remember that an operator always produces a value.
+// So in other words an operator is an expression, right.
+// If we have a value we can then assign that value to a variable.
+// So with this we can make the ternary operator really useful
+// to basically conditionally declare variables.
+
+const drink = age >= 18 ? "wine" : "water";
+console.log(drink);
+
+let drink2;
+if (age >= 18) {
+  drink2 = "wine";
+} else {
+  drink2 = "water";
+}
+console.log(drink2);
+
+// The ternary operator is really an expression, we can now use it for in a template literal.
+
+console.log(`I like to drink ${age >= 18 ? "wine" : "water"}`);
