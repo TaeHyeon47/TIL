@@ -166,14 +166,14 @@ BMI (28.3) is higher than John's (23.9)!"
 
 // if (favourite !== 23) console.log('Why not 23?')
 
-const hasDrivesLicense = true; // A
-const hasGoodVision = true; // B
+// const hasDrivesLicense = true; // A
+// const hasGoodVision = true; // B
 
-console.log(hasDrivesLicense && hasGoodVision);
-console.log(hasDrivesLicense || hasGoodVision);
-console.log(!hasDrivesLicense);
+// console.log(hasDrivesLicense && hasGoodVision);
+// console.log(hasDrivesLicense || hasGoodVision);
+// console.log(!hasDrivesLicense);
 
-const shouldDrive = hasDrivesLicense && hasGoodVision;
+// const shouldDrive = hasDrivesLicense && hasGoodVision;
 
 // if (shouldDrive) {
 //   console.log("Sarah is able to drive!");
@@ -181,11 +181,56 @@ const shouldDrive = hasDrivesLicense && hasGoodVision;
 //   console.log("Someone else should drive...");
 // }
 
-const isTired = false; // C
-console.log(hasDrivesLicense || hasGoodVision || isTired);
+// const isTired = false; // C
+// console.log(hasDrivesLicense || hasGoodVision || isTired);
 
-if (hasDrivesLicense && hasGoodVision && !isTired) {
-  console.log("Sarah is able to drive!");
+// if (hasDrivesLicense && hasGoodVision && !isTired) {
+//   console.log("Sarah is able to drive!");
+// } else {
+//   console.log("Someone else should drive...");
+// }
+
+//////////////////////////////////
+///// The Switch Statement ///////
+//////////////////////////////////
+
+const day = "friday";
+switch (day) {
+  case "monday": // day === 'monday'
+    console.log("Plan course structure");
+    console.log("Go to coding meetup");
+    break;
+  case "tuesday":
+    console.log("Prepare theory videos");
+    break;
+  case "wednesday":
+  case "thursday":
+    console.log("Write code examples");
+    break;
+  case "friday":
+    console.log("Record videos");
+    break;
+  case "saturday":
+  case "sunday":
+    console.log("Enjoy the Weekend");
+  default:
+    console.log("Not a valid Day!");
+}
+
+// And remember that this actually does a strict comparison.
+// This was really designed for equality and not for like comparing stuff.
+
+if (day === "monday") {
+  console.log("Plan course structure");
+  console.log("Go to coding meetup");
+} else if (day === "tuesday") {
+  console.log("Prepare theory videos");
+} else if (day === "wednesday" || day === "thursday") {
+  console.log("Write code examples");
+} else if (day === "friday") {
+  console.log("Record videos");
+} else if (day === "saturday" || day === "sunday") {
+  console.log("Enjoy the Weekend");
 } else {
-  console.log("Someone else should drive...");
+  console.log("Not a valid Day!");
 }
