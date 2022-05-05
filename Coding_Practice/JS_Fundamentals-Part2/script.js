@@ -31,3 +31,67 @@
 // const interface = "Audio";
 // const private = 534;
 // const if = 23;
+
+/////////////////////
+///// Functions /////
+/////////////////////
+
+// Function is simply a piece of code that we can reuse over and over again in our code.
+// So it's a little bit like a variable but for whole chunks of code.
+// So remember a variable holds value but a function can hold one or more complete lines of code.
+
+function logger() {
+  console.log("My name is Jonas");
+}
+
+// calling / running / invoking function
+logger();
+logger();
+logger();
+
+// Usually when we write functions we also pass data into a function
+// and additionally, a function can also return data as well which means to give us data back
+// that we can then use for something else in the program.
+// So a function cannot only reuse a piece of code but it can also receive data and return data back
+
+// I like to think of functions as machines. So I think that's a great analogy
+// so for example, let's imagine a food processor, so we put foot into the processor
+// then the processor does something to our food which is the function body basically
+// and then in the end the food processor returns to processed food
+// and so that's exactly what we can do with functions as well
+
+// we also specify something called parameters and parameters are like variables
+// that are specific only to this function and they will get defined once we call the function.
+
+// apples, oranges will get defined once the function is called
+// and they represent the input data of this function
+function fruitProcessor(apples, oranges) {
+  const juice = `Juice with ${apples} apples ${oranges} oranges.`;
+  return juice; // we can use the return keyword and with this, we can return any value from the function
+}
+
+// The "juice" was returned from this function.
+fruitProcessor(5, 0); // So basically that means that the result of running this function here. // Once this function has been executed this code here is then replaced by the result of the function
+// "fruitProcessor("5", 0)"는 최종적으로 return 값인 juice로 변한다.
+// in this case that's gonna be the juice string that we produced.
+
+// So if we want to use that value that was returned we need to store it in a variable
+const appleJuice = fruitProcessor(5, 0);
+console.log(appleJuice);
+console.log(fruitProcessor(5, 0));
+
+const appleOrangeJuice = fruitProcessor(2, 4);
+console.log(appleOrangeJuice);
+
+// functions allow us to write more maintainable code because with functions we can create reusable chunks of code
+// instead of having to manually write the same code over and over again.
+// So that's the most important thing that you need to know about functions
+// and when you know that you will know when you should actually use functions
+// and this is actually a very important principle for writing clean code
+// that is used in programming all the time
+// and this principle is called don't repeat yourself or dry.
+
+// Console dot log here is actually also just a function but a built in function
+// that we do not have to write ourselves
+
+const num = Number("23");
