@@ -194,43 +194,66 @@ BMI (28.3) is higher than John's (23.9)!"
 ///// The Switch Statement ///////
 //////////////////////////////////
 
-const day = "friday";
-switch (day) {
-  case "monday": // day === 'monday'
-    console.log("Plan course structure");
-    console.log("Go to coding meetup");
-    break;
-  case "tuesday":
-    console.log("Prepare theory videos");
-    break;
-  case "wednesday":
-  case "thursday":
-    console.log("Write code examples");
-    break;
-  case "friday":
-    console.log("Record videos");
-    break;
-  case "saturday":
-  case "sunday":
-    console.log("Enjoy the Weekend");
-  default:
-    console.log("Not a valid Day!");
-}
+// const day = "friday";
+// switch (day) {
+//   case "monday": // day === 'monday'
+//     console.log("Plan course structure");
+//     console.log("Go to coding meetup");
+//     break;
+//   case "tuesday":
+//     console.log("Prepare theory videos");
+//     break;
+//   case "wednesday":
+//   case "thursday":
+//     console.log("Write code examples");
+//     break;
+//   case "friday":
+//     console.log("Record videos");
+//     break;
+//   case "saturday":
+//   case "sunday":
+//     console.log("Enjoy the Weekend");
+//   default:
+//     console.log("Not a valid Day!");
+// }
 
-// And remember that this actually does a strict comparison.
-// This was really designed for equality and not for like comparing stuff.
+// // And remember that this actually does a strict comparison.
+// // This was really designed for equality and not for like comparing stuff.
 
-if (day === "monday") {
-  console.log("Plan course structure");
-  console.log("Go to coding meetup");
-} else if (day === "tuesday") {
-  console.log("Prepare theory videos");
-} else if (day === "wednesday" || day === "thursday") {
-  console.log("Write code examples");
-} else if (day === "friday") {
-  console.log("Record videos");
-} else if (day === "saturday" || day === "sunday") {
-  console.log("Enjoy the Weekend");
-} else {
-  console.log("Not a valid Day!");
-}
+// if (day === "monday") {
+//   console.log("Plan course structure");
+//   console.log("Go to coding meetup");
+// } else if (day === "tuesday") {
+//   console.log("Prepare theory videos");
+// } else if (day === "wednesday" || day === "thursday") {
+//   console.log("Write code examples");
+// } else if (day === "friday") {
+//   console.log("Record videos");
+// } else if (day === "saturday" || day === "sunday") {
+//   console.log("Enjoy the Weekend");
+// } else {
+//   console.log("Not a valid Day!");
+// }
+
+/////////////////////////////////////////
+///// Statements and Expressions ///////
+////////////////////////////////////////
+
+// An Expression is a piece of code that produces a value.
+// ex) 3 + 4, 1991, true && false && !false
+
+// The Statement is like a bigger piece of code that is executed
+// and which does not produce a value on itself.
+// Basically we write our whole programs as a sequence of actions.
+// And these actions are statements.
+// ex) if/else Statement
+// if (23 > 10) {
+//  const str = '23 is bigger';
+// }
+// It performs some actions, in this case, declaring this variable, but it doesn't produce a value.
+// Now the string itself, again is an expression.
+
+// Basically, whenever something ends with a semicolon, that's then a statement.
+// JavaScript expects statements and expressions in different places.
+// In a template literal, we can only insert expressions, but not statements.
+// ex) console.log(`I'm ${2037 - 1991} years old.)
