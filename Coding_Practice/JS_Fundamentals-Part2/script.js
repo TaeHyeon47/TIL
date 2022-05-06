@@ -95,3 +95,67 @@ console.log(appleOrangeJuice);
 // that we do not have to write ourselves
 
 const num = Number("23");
+
+///////////////////////////////////////////////////
+////// Function Declarations vs. Expressions //////
+///////////////////////////////////////////////////
+
+// Function Declarations(선언문)
+// because we simply use the function keyword
+// to declare a function a bit like we declare a variable.
+// So let's now write another function declaration.
+
+//Function declaration
+const age1 = calcAge1(1991); // Function declaration, we can call them in a code before they are defined.
+
+function calcAge1(birthYear) {
+  return 2037 - birthYear;
+}
+
+console.log(age1);
+
+//Function expression (expression produces a value)
+//we simply write function basically without a name
+//and then we still define the parameter,
+//we still define the function body,
+//which is gonna be the same as this one
+//and to store all of this here into a variable
+
+// const age2 = calcAge2(1991); // in Function expression not work
+
+const calcAge2 = function (birthYeah) {
+  // calcAge2 varible will then hold this function value basically
+  return 2037 - birthYeah;
+};
+
+const age2 = calcAge2(1991);
+console.log(age1, age2);
+
+//The functional expression works the exact same way as the function declaration.
+//We call it in the same way we capture the return value in the same way and then of course the result is also the same
+//because the function body is the same.
+
+//But it's very important to know that we have these two type of functions in JavaScript.
+//Because in some places we will actually need to write them like this,
+//as you will see as we go through the course. So again, this part here that I just highlighted
+//this function here is in fact an expression
+//and remember that expressions produce values.
+
+// functions are actually just values. So just as a number or a string or a boolean value.
+// So a function is not a type, okay? but it's also a value.
+// It will become very important later
+
+// the main practical difference is that we can actually call function declarations
+// before they are defined in the code.
+
+//For now just keep in mind that you can call a function declaration before you define it
+//even though that might not be such a good idea in many cases
+//but you can do it if necessary.
+
+//Personally, I prefer to use function expressions
+//because this then forces me into a nice structure
+//where I have to define all the functions first
+//at the top of the code and only then I can call them.
+//So this makes the code a little bit nicer
+//and more structured.
+//I also like to have everything stored in variables,
