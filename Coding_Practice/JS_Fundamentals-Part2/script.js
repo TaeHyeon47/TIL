@@ -1,6 +1,6 @@
-//////////////////////////////////
-///// Activating Strict Mode /////
-//////////////////////////////////
+///////////////////////////////////
+///// Activating Strict Mode //////
+///////////////////////////////////
 
 // So strict mode is a special mode that we can activate in JavaScript, to write a secure JavaScript code.
 
@@ -111,7 +111,6 @@ const age1 = calcAge1(1991); // Function declaration, we can call them in a code
 function calcAge1(birthYear) {
   return 2037 - birthYear;
 }
-
 console.log(age1);
 
 //Function expression (expression produces a value)
@@ -123,13 +122,14 @@ console.log(age1);
 
 // const age2 = calcAge2(1991); // in Function expression not work
 
+/*
 const calcAge2 = function (birthYeah) {
   // calcAge2 varible will then hold this function value basically
   return 2037 - birthYeah;
 };
-
 const age2 = calcAge2(1991);
 console.log(age1, age2);
+*/
 
 //The functional expression works the exact same way as the function declaration.
 //We call it in the same way we capture the return value in the same way and then of course the result is also the same
@@ -159,3 +159,40 @@ console.log(age1, age2);
 //So this makes the code a little bit nicer
 //and more structured.
 //I also like to have everything stored in variables,
+
+/////////////////////////////
+////// Arrow Functions //////
+/////////////////////////////
+
+// Arrow Functions was added to JavaScript in ES6
+// arrow function is simply a special form of function expression
+// that is shorter and therefore faster to write.
+
+//Function expression (expression produces a value)
+const calcAge2 = function (birthYeah) {
+  return 2037 - birthYeah;
+};
+
+// Arrow expression
+// A lot easier and faster to write.
+// The first reason for that is that we don't need the curly braces,
+// And second is that the return actually happens implicitly. without us having to explicitly write the return keyword.
+// that this is gonna be extremely helpful in certain situations.
+const calcAge3 = (birthYeah) => 2037 - birthYeah; // So we can only omit the return here in case we have a one-liner function like here.
+const age3 = calcAge3(1991);
+console.log(age3);
+
+const yearsUntilRetirement = (birthYear, firstName) => {
+  const age = 2037 - birthYear;
+  const retirement = 65 - age;
+  // return retirement; // we actually need to write the return keyword explicitly.
+  return `${firstName} retires in ${retirement}`;
+};
+console.log(yearsUntilRetirement(1991, "Jonas"));
+console.log(yearsUntilRetirement(1980, "Bob"));
+
+// arrow function do not get a so-called this keyword.
+
+//////////////////////////////////////////////
+///// Functions Calling Other Functions //////
+//////////////////////////////////////////////
