@@ -178,21 +178,70 @@ const calcAge2 = function (birthYeah) {
 // The first reason for that is that we don't need the curly braces,
 // And second is that the return actually happens implicitly. without us having to explicitly write the return keyword.
 // that this is gonna be extremely helpful in certain situations.
-const calcAge3 = (birthYeah) => 2037 - birthYeah; // So we can only omit the return here in case we have a one-liner function like here.
-const age3 = calcAge3(1991);
-console.log(age3);
+// const calcAge3 = (birthYeah) => 2037 - birthYeah; // So we can only omit the return here in case we have a one-liner function like here.
+// const age3 = calcAge3(1991);
+// console.log(age3);
 
-const yearsUntilRetirement = (birthYear, firstName) => {
-  const age = 2037 - birthYear;
-  const retirement = 65 - age;
-  // return retirement; // we actually need to write the return keyword explicitly.
-  return `${firstName} retires in ${retirement}`;
-};
-console.log(yearsUntilRetirement(1991, "Jonas"));
-console.log(yearsUntilRetirement(1980, "Bob"));
+// const yearsUntilRetirement = (birthYear, firstName) => {
+//   const age = 2037 - birthYear;
+//   const retirement = 65 - age;
+//   // return retirement; // we actually need to write the return keyword explicitly.
+//   return `${firstName} retires in ${retirement} years`;
+// };
+// console.log(yearsUntilRetirement(1991, "Jonas"));
+// console.log(yearsUntilRetirement(1980, "Bob"));
 
 // arrow function do not get a so-called this keyword.
 
 //////////////////////////////////////////////
 ///// Functions Calling Other Functions //////
 //////////////////////////////////////////////
+
+function cutFruitPieces(fruit) {
+  return fruit * 4;
+}
+
+function fruitProcessor(apples, oranges) {
+  const applePieces = cutFruitPieces(apples);
+  const orangePieces = cutFruitPieces(oranges);
+  const juice = `Juice with ${applePieces} apples ${orangePieces} oranges.`;
+  return juice;
+}
+
+console.log(fruitProcessor(2, 3));
+
+// Why not simply multiply both of the input values by four??
+// First, the point that I'm making here is that it's very common for one function to call another function.
+// Second, this is also a very good example to illustrate the don't repeat yourself principle that I mentioned earlier.
+
+////////////////////////////////
+///// Reviewing Functions //////
+////////////////////////////////
+
+// We have two different functions here with the same parameter names.
+// This one has birth year and this one has too, but that's not a problem at all.
+const calcAge = function (birthYear) {
+  return 2037 - birthYear;
+};
+// This birth year in this function is not at all related to this birth year in this function.
+// They are two completely different parameters.
+const yearsUntilRetirement = function (birthYear, firstName) {
+  const age = calcAge(birthYear);
+  const retirement = 65 - age;
+
+  if (retirement > 0) {
+    return retirement; // this return keyword here will actually immediately exit the function.
+    console.log(`${firstName} retires in ${retirement} years`);
+  } else {
+    return -1;
+    console.log(`${firstName} retires in ${retirement} years`);
+  }
+
+  return retirement; // we actually need to write the return keyword explicitly.
+  // return `${firstName} retires in ${retirement} years`;
+};
+
+yearsUntilRetirement(1991, "Jonas"); //Without the parenthesis, the function is really just a value.
+// But then with the parenthesis, we actually called a function.
+console.log(yearsUntilRetirement(1991, "Jonas"));
+console.log(yearsUntilRetirement(1950, "Mike"));
