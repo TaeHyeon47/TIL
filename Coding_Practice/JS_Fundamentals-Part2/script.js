@@ -40,14 +40,14 @@
 // So it's a little bit like a variable but for whole chunks of code.
 // So remember a variable holds value but a function can hold one or more complete lines of code.
 
-function logger() {
-  console.log("My name is Jonas");
-}
+// function logger() {
+//   console.log("My name is Jonas");
+// }
 
-// calling / running / invoking function
-logger();
-logger();
-logger();
+// // calling / running / invoking function
+// logger();
+// logger();
+// logger();
 
 // Usually when we write functions we also pass data into a function
 // and additionally, a function can also return data as well which means to give us data back
@@ -65,23 +65,23 @@ logger();
 
 // apples, oranges will get defined once the function is called
 // and they represent the input data of this function
-function fruitProcessor(apples, oranges) {
-  const juice = `Juice with ${apples} apples ${oranges} oranges.`;
-  return juice; // we can use the return keyword and with this, we can return any value from the function
-}
+// function fruitProcessor(apples, oranges) {
+//   const juice = `Juice with ${apples} apples ${oranges} oranges.`;
+//   return juice; // we can use the return keyword and with this, we can return any value from the function
+// }
 
-// The "juice" was returned from this function.
-fruitProcessor(5, 0); // So basically that means that the result of running this function here. // Once this function has been executed this code here is then replaced by the result of the function
-// "fruitProcessor("5", 0)"는 최종적으로 return 값인 juice로 변한다.
-// in this case that's gonna be the juice string that we produced.
+// // The "juice" was returned from this function.
+// fruitProcessor(5, 0); // So basically that means that the result of running this function here. // Once this function has been executed this code here is then replaced by the result of the function
+// // "fruitProcessor("5", 0)"는 최종적으로 return 값인 juice로 변한다.
+// // in this case that's gonna be the juice string that we produced.
 
 // So if we want to use that value that was returned we need to store it in a variable
-const appleJuice = fruitProcessor(5, 0);
-console.log(appleJuice);
-console.log(fruitProcessor(5, 0));
+// const appleJuice = fruitProcessor(5, 0);
+// console.log(appleJuice);
+// console.log(fruitProcessor(5, 0));
 
-const appleOrangeJuice = fruitProcessor(2, 4);
-console.log(appleOrangeJuice);
+// const appleOrangeJuice = fruitProcessor(2, 4);
+// console.log(appleOrangeJuice);
 
 // functions allow us to write more maintainable code because with functions we can create reusable chunks of code
 // instead of having to manually write the same code over and over again.
@@ -94,7 +94,7 @@ console.log(appleOrangeJuice);
 // Console dot log here is actually also just a function but a built in function
 // that we do not have to write ourselves
 
-const num = Number("23");
+// const num = Number("23");
 
 ///////////////////////////////////////////////////
 ////// Function Declarations vs. Expressions //////
@@ -106,12 +106,12 @@ const num = Number("23");
 // So let's now write another function declaration.
 
 //Function declaration
-const age1 = calcAge1(1991); // Function declaration, we can call them in a code before they are defined.
+// const age1 = calcAge1(1991); // Function declaration, we can call them in a code before they are defined.
 
-function calcAge1(birthYear) {
-  return 2037 - birthYear;
-}
-console.log(age1);
+// function calcAge1(birthYear) {
+//   return 2037 - birthYear;
+// }
+// console.log(age1);
 
 //Function expression (expression produces a value)
 //we simply write function basically without a name
@@ -169,9 +169,9 @@ console.log(age1, age2);
 // that is shorter and therefore faster to write.
 
 //Function expression (expression produces a value)
-const calcAge2 = function (birthYeah) {
-  return 2037 - birthYeah;
-};
+// const calcAge2 = function (birthYeah) {
+//   return 2037 - birthYeah;
+// };
 
 // Arrow expression
 // A lot easier and faster to write.
@@ -197,18 +197,18 @@ const calcAge2 = function (birthYeah) {
 ///// Functions Calling Other Functions //////
 //////////////////////////////////////////////
 
-function cutFruitPieces(fruit) {
-  return fruit * 4;
-}
+// function cutFruitPieces(fruit) {
+//   return fruit * 4;
+// }
 
-function fruitProcessor(apples, oranges) {
-  const applePieces = cutFruitPieces(apples);
-  const orangePieces = cutFruitPieces(oranges);
-  const juice = `Juice with ${applePieces} apples ${orangePieces} oranges.`;
-  return juice;
-}
+// function fruitProcessor(apples, oranges) {
+//   const applePieces = cutFruitPieces(apples);
+//   const orangePieces = cutFruitPieces(oranges);
+//   const juice = `Juice with ${applePieces} apples ${orangePieces} oranges.`;
+//   return juice;
+// }
 
-console.log(fruitProcessor(2, 3));
+// console.log(fruitProcessor(2, 3));
 
 // Why not simply multiply both of the input values by four??
 // First, the point that I'm making here is that it's very common for one function to call another function.
@@ -218,30 +218,106 @@ console.log(fruitProcessor(2, 3));
 ///// Reviewing Functions //////
 ////////////////////////////////
 
-// We have two different functions here with the same parameter names.
-// This one has birth year and this one has too, but that's not a problem at all.
+// // We have two different functions here with the same parameter names.
+// // This one has birth year and this one has too, but that's not a problem at all.
+// const calcAge = function (birthYear) {
+//   return 2037 - birthYear;
+// };
+// // This birth year in this function is not at all related to this birth year in this function.
+// // They are two completely different parameters.
+// const yearsUntilRetirement = function (birthYear, firstName) {
+//   const age = calcAge(birthYear);
+//   const retirement = 65 - age;
+
+//   if (retirement > 0) {
+//     return retirement; // this return keyword here will actually immediately exit the function.
+//     console.log(`${firstName} retires in ${retirement} years`);
+//   } else {
+//     return -1;
+//     console.log(`${firstName} retires in ${retirement} years`);
+//   }
+
+//   return retirement; // we actually need to write the return keyword explicitly.
+//   // return `${firstName} retires in ${retirement} years`;
+// };
+
+// yearsUntilRetirement(1991, "Jonas"); //Without the parenthesis, the function is really just a value.
+// // But then with the parenthesis, we actually called a function.
+// console.log(yearsUntilRetirement(1991, "Jonas"));
+// console.log(yearsUntilRetirement(1950, "Mike"));
+
+///////////////////////////////////
+///// Introduction to Arrays //////
+///////////////////////////////////
+
+const friend1 = "Michael";
+const friend2 = "Steven";
+const friend3 = "Peter";
+
+const friends = ["Michael", "Steven", "Peter"];
+console.log(friends);
+
+// const years = new Array(1991, 1984, 2008, 2020); // here we used a different way of creating the Array, which was using this Array function.
+
+console.log(friends[0]);
+
+// We used here is not only for retrieving elements from the Array
+// but we can also change it to add elements to the Array.
+console.log(friends[2]);
+
+friends[2] = "Jay"; // variables declared with const, cannot be changed. And we did in fact declare the friends variable
+console.log(friends); // But I was still able to change one element. isn't that a contradiction?
+// Well what I didn't tell you at the time is that only primitive values are immutable. But an Array is not a primitive value.
+// So we can actually always change it so we can mutate it.
+// friends = ['Bob', 'Alice'] //  illegal
+
+// Anyway what matters, is that this is gonna be the exact amount of elements that is in the Array. And it's not zero based.
+console.log(friends.length); // this dot length is something called a property which we're gonna talk about a little bit later in the section when we talk about objects.
+// This automatic retrieval of the last element works just fine.
+console.log(friends[friends.length - 1]); // friends.length is not zero based. And so we always need to subtract one from this number here.
+// 'friends.length - 1' is expression. and remember that an expression is something that produces a value.
+// And 'friends.length - 1' is gonna be calculated first. So it will compute friends.length which is three minus one is two, and then it will get friends at position two.
+
+const firstName = "Jonas";
+const jonas = [firstName, "Schemdtmann", 2037 - 1991, "teacher", friends]; // we could even put other Arrays inside of an Array.
+// we have all the relevant data about Jonas in one handy data structure.
+// And that's really convenient because then we don't have to create one variable for each of the data points.
+console.log(jonas);
+console.log(jonas.length);
+
+// Exercise
 const calcAge = function (birthYear) {
   return 2037 - birthYear;
 };
-// This birth year in this function is not at all related to this birth year in this function.
-// They are two completely different parameters.
-const yearsUntilRetirement = function (birthYear, firstName) {
-  const age = calcAge(birthYear);
-  const retirement = 65 - age;
 
-  if (retirement > 0) {
-    return retirement; // this return keyword here will actually immediately exit the function.
-    console.log(`${firstName} retires in ${retirement} years`);
-  } else {
-    return -1;
-    console.log(`${firstName} retires in ${retirement} years`);
-  }
+const years = [1990, 1967, 2002, 2010, 2018];
+console.log(years);
+console.log(calcAge(years)); // This would be not illegal, I would say but it's not gonna work because this years is an Array.
+// If we pass this years' Array as an argument to the calcAge function. it doesn't know what to do with it.
+// Because this operation here(return 2037 - birthYear;) expects a single value. We cannot do a number minus and array.
 
-  return retirement; // we actually need to write the return keyword explicitly.
-  // return `${firstName} retires in ${retirement} years`;
-};
+console.log(years + 10); // '1990,1967,2002,2010,201810'
+// the plus operator what it does here, is to convert everything to a string.
 
-yearsUntilRetirement(1991, "Jonas"); //Without the parenthesis, the function is really just a value.
-// But then with the parenthesis, we actually called a function.
-console.log(yearsUntilRetirement(1991, "Jonas"));
-console.log(yearsUntilRetirement(1950, "Mike"));
+console.log(years - 10); // NaN
+//we cannot do operations with Arrays.
+
+const age1 = calcAge(years[0]);
+const age2 = calcAge(years[1]);
+const age3 = calcAge(years[years.length - 1]);
+console.log(age1, age2, age3);
+
+const ages = [
+  calcAge(years[0]),
+  calcAge(years[1]),
+  calcAge(years[years.length - 1]),
+];
+
+console.log(ages);
+
+//////////////////////////////////////////////
+///// Basic Array Operations (Methods) ///////
+//////////////////////////////////////////////
+
+// JavaScript has some built in functions that we can basically apply directly on arrays.
+// method called push
