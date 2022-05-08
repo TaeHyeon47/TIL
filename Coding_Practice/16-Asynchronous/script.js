@@ -76,57 +76,95 @@ const renderCountry = function (data, className = "") {
   countriesContainer.style.opacity = 1;
 };
 
-const getCountryAndNeighbour = function (country) {
-  // AJAX call country 1
-  const request = new XMLHttpRequest();
-  request.open("GET", `https://restcountries.com/v2/name/${country}`);
-  request.send();
+// const getCountryAndNeighbour = function (country) {
+//   // AJAX call country 1
+//   const request = new XMLHttpRequest();
+//   request.open("GET", `https://restcountries.com/v2/name/${country}`);
+//   request.send();
 
-  request.addEventListener("load", function () {
-    const [data] = JSON.parse(this.responseText);
-    console.log(data);
+//   request.addEventListener("load", function () {
+//     const [data] = JSON.parse(this.responseText);
+//     console.log(data);
 
-    // Render country 1
-    renderCountry(data);
+//     // Render country 1
+//     renderCountry(data);
 
-    //Get neighbour country (2)
-    const [neighbour] = data.borders;
+//     //Get neighbour country (2)
+//     const [neighbour] = data.borders;
 
-    if (!neighbour) return;
+//     if (!neighbour) return;
 
-    // AJAX call country 2
-    const request2 = new XMLHttpRequest();
-    request2.open("GET", `https://restcountries.com/v2/alpha/${neighbour}`);
-    request2.send();
+//     // AJAX call country 2
+//     const request2 = new XMLHttpRequest();
+//     request2.open("GET", `https://restcountries.com/v2/alpha/${neighbour}`);
+//     request2.send();
 
-    request2.addEventListener("load", function () {
-      const data2 = JSON.parse(this.responseText);
-      console.log(data2);
-      renderCountry(data2, "neighbour");
-    });
-  });
-};
+//     request2.addEventListener("load", function () {
+//       const data2 = JSON.parse(this.responseText);
+//       console.log(data2);
+//       renderCountry(data2, "neighbour");
+//     });
+//   });
+// };
 
-getCountryAndNeighbour("usa");
+// getCountryAndNeighbour("usa");
 
-// callback hell is when we have a lot of nested callbacks
-// in order to execute asynchronous tasks in sequence.
+// // callback hell is when we have a lot of nested callbacks
+// // in order to execute asynchronous tasks in sequence.
 
-setTimeout(() => {
-  console.log(`1 second passed`);
-  setTimeout(() => {
-    console.log(`2 second passed`);
-    setTimeout(() => {
-      console.log(`3 second passed`);
-      setTimeout(() => {
-        console.log(`4 second passed`);
-      }, 1000);
-    }, 1000);
-  }, 1000);
-}, 1000);
+// setTimeout(() => {
+//   console.log(`1 second passed`);
+//   setTimeout(() => {
+//     console.log(`2 second passed`);
+//     setTimeout(() => {
+//       console.log(`3 second passed`);
+//       setTimeout(() => {
+//         console.log(`4 second passed`);
+//       }, 1000);
+//     }, 1000);
+//   }, 1000);
+// }, 1000);
 
 // Since ES6 there is actually a way of escaping callback hell
 // by using something called promises.
+
+////////////////////////////////////////
+////// Promises and the Fetch API //////
+////////////////////////////////////////
+
+// const request = new XMLHttpRequest();
+// request.open("GET", `https://restcountries.com/v2/name/${country}`);
+// request.send();
+
+// the fetch function can take in like an object of options as well.
+// that the fetch function immediately returned a promise.
+// const request = fetch("https://restcountries.com/v2/name/portugal`");
+// console.log(request);
+
+// And so to handle this fulfilled state, we can use the then method
+// that is available on all promises. we can call the then method.
+// Now into the then method, we need to pass a callback function that we want to be executed
+// as soon as the promise is actually fulfilled.
+
+const getCountryData = function (country) {
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    .then(function (response) {
+      console.log(response);
+      return response.json(); // he json method here is a method that is available on all the response objects that is coming
+      // that this json function itself, is actually also an asynchronous function. it will also return a new promise.
+    })
+    .then(function (data) {
+      console.log(data);
+      renderCountry(data[0]);
+    }); // this function will actually receive one argument
+  // and that argument is the resulting value of the fulfilled promise.
+  // So let me call it response here because this is the response of an AJAX call in this case.
+};
+
+getCountryData("portugal");
+
+// So in order to be able to actually read this data from the body,
+// We need to call the json method on the response.
 
 // ////////////////////////////////////////////////////
 // ////// Asynchronous JavaScript, AJAX and APIs //////
