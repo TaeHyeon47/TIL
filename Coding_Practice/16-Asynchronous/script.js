@@ -12,48 +12,121 @@ const countriesContainer = document.querySelector(".countries");
 // Now in JavaScript, there are actually multiple ways of doing AJAX calls.
 // But we're gonna start with the most old school one.
 
-const getCountryData = function (country) {
-  const request = new XMLHttpRequest();
-  // https://github.com/public-apis/public-apis 접속
-  // CORS은 Yes 또는 Unknown으로 표기
-  // CORS stands for Cross Origin Resource Sharing. without CORS, we cannot access a third party API from our own code.
-  // I have to find API ENDPOINTS.
-  // The endpoint is essentially just another name for the URL that we need.
-  request.open("GET", `https://restcountries.com/v3.1/name/${country}`);
-  request.send(); // Okay, so this will now send off the request to 'https://restcountries.com/v3.1/name/korea'
-  //data = request.send(); // we couldn't do // And the reason why we cannot do this is because the result is simply not there yet, right.
-  // So this AJAX call that we just send off here is being done in the background while the rest of the code keeps running. And so this is the asynchronous.
+// const getCountryData = function (country) {
+//   const request = new XMLHttpRequest();
+//   // https://github.com/public-apis/public-apis 접속
+//   // CORS은 Yes 또는 Unknown으로 표기
+//   // CORS stands for Cross Origin Resource Sharing. without CORS, we cannot access a third party API from our own code.
+//   // I have to find API ENDPOINTS.
+//   // The endpoint is essentially just another name for the URL that we need.
+//   request.open("GET", `https://restcountries.com/v2/name/${country}`);
+//   request.send(); // Okay, so this will now send off the request to 'https://restcountries.com/v3.1/name/korea'
+//   //data = request.send(); we couldn't do And the reason why we cannot do this is because the result is simply not there yet, right.
+//   // So this AJAX call that we just send off here is being done in the background while the rest of the code keeps running. And so this is the asynchronous.
 
-  console.log(request.responseText); // responseText is of course only gonna be set once the data has actually arrived, right.
+//   console.log(request.responseText); // responseText is of course only gonna be set once the data has actually arrived, right.
 
-  // once send off the request then fetches the data in the background is done,
-  // it will emit the load event. And so as soon as the data arrives this callback function here will be called.
-  request.addEventListener("load", function () {
-    console.log(this.responseText); // the this keyword inside of this function is the request, right?
-    // So we could also do request, but let's just use the this keyword.
-    // And then the response is in the property response text.
-    const [data] = JSON.parse(this.responseText);
-    console.log(data);
+//   // once send off the request then fetches the data in the background is done,
+//   // It will emit the load event. And so as soon as the data arrives this callback function here will be called.
+//   request.addEventListener("load", function () {
+//     console.log(this.responseText); // the this keyword inside of this function is the request, right?
+//     // So we could also do request, but let's just use the this keyword.
+//     // And then the response is in the property response text.
+//     const [data] = JSON.parse(this.responseText);
+//     console.log(data);
 
-    const html = `<article class="country">
+//     const html = `<article class="country">
+//    <img class="country__img" src="${data.flag}" />
+//    <div class="country__data">
+//      <h3 class="country__name">${data.name}</h3>
+//      <h4 class="country__region">${data.region}</h4>
+//      <p class="country__row"><span>👫</span>${(
+//        +data.population / 1000000
+//      ).toFixed(1)}</p>
+//      <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+//      <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
+//    </div>
+//  </article>`;
+//     countriesContainer.insertAdjacentHTML("beforeend", html);
+//     countriesContainer.style.opacity = 1;
+//   });
+// };
+
+// getCountryData("portugal"); // by calling these functions here twice,
+// getCountryData("usa"); // we will basically have two AJAX calls happening at the same time.
+
+//////////////////////////////////////
+////// Welcome to Callback Hell //////
+//////////////////////////////////////
+
+const renderCountry = function (data, className = "") {
+  const html = `<article class="country ${className}">
    <img class="country__img" src="${data.flag}" />
    <div class="country__data">
-     <h3 class="country__name">${data.name.common}</h3>
+     <h3 class="country__name">${data.name}</h3>
      <h4 class="country__region">${data.region}</h4>
      <p class="country__row"><span>👫</span>${(
        +data.population / 1000000
      ).toFixed(1)}</p>
-     <p class="country__row"><span>🗣️</span>${data.languages}</p>
-     <p class="country__row"><span>💰</span>${data.currencies}</p>
+     <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+     <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
    </div>
  </article>`;
-    countriesContainer.insertAdjacentHTML("beforeend", html);
-    countriesContainer.style.opacity = 1;
+  countriesContainer.insertAdjacentHTML("beforeend", html);
+  countriesContainer.style.opacity = 1;
+};
+
+const getCountryAndNeighbour = function (country) {
+  // AJAX call country 1
+  const request = new XMLHttpRequest();
+  request.open("GET", `https://restcountries.com/v2/name/${country}`);
+  request.send();
+
+  request.addEventListener("load", function () {
+    const [data] = JSON.parse(this.responseText);
+    console.log(data);
+
+    // Render country 1
+    renderCountry(data);
+
+    //Get neighbour country (2)
+    const [neighbour] = data.borders;
+
+    if (!neighbour) return;
+
+    // AJAX call country 2
+    const request2 = new XMLHttpRequest();
+    request2.open("GET", `https://restcountries.com/v2/alpha/${neighbour}`);
+    request2.send();
+
+    request2.addEventListener("load", function () {
+      const data2 = JSON.parse(this.responseText);
+      console.log(data2);
+      renderCountry(data2, "neighbour");
+    });
   });
 };
 
-getCountryData("korea"); // by calling these functions here twice,
-getCountryData("usa"); // we will basically have two AJAX calls happening at the same time.
+getCountryAndNeighbour("usa");
+
+// callback hell is when we have a lot of nested callbacks
+// in order to execute asynchronous tasks in sequence.
+
+setTimeout(() => {
+  console.log(`1 second passed`);
+  setTimeout(() => {
+    console.log(`2 second passed`);
+    setTimeout(() => {
+      console.log(`3 second passed`);
+      setTimeout(() => {
+        console.log(`4 second passed`);
+      }, 1000);
+    }, 1000);
+  }, 1000);
+}, 1000);
+
+// Since ES6 there is actually a way of escaping callback hell
+// by using something called promises.
 
 // ////////////////////////////////////////////////////
 // ////// Asynchronous JavaScript, AJAX and APIs //////
@@ -85,7 +158,7 @@ getCountryData("usa"); // we will basically have two AJAX calls happening at the
 // }, 5000);
 // p.style.color = "red";
 
-// // Asynchronous code is executed after a task that runs in the "background" finishes;
+// Asynchronous code is executed after a task that runs in the "background" finishes;
 // // Asynchronous code is non-blocking.
 // // Execution doesn't wait for an asynchronous task to finish its work.
 
