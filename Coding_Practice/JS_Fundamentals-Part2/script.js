@@ -320,4 +320,47 @@ console.log(ages);
 //////////////////////////////////////////////
 
 // JavaScript has some built in functions that we can basically apply directly on arrays.
-// method called push
+// method called 'push'. push method adds elements to the end of an array.
+
+const friends2 = ["Michael", "Steven", "Peter"];
+//Add elements
+const newLength = friends2.push("Jay"); // push is a method which technically is a function. and we call that function directly on the friends array.
+console.log(friends2); // ['Michael', 'Steven', 'Jay', 'Jay']
+console.log(newLength); // 4
+
+// Now since push is a function here, it can also return something. we already know that we can pass arguments
+// Into functions and we did that here with Jay, then the function can do some work and in this case,
+// The push function does return a value and the value that it returns is the length of the new array.
+// So if we want to capture that data or that value, we can create a new variable for that.
+
+console.log(newLength); // 4
+// So we just push an element and call it a day, Because usually we don't immediately need the length of the new array.
+// But in case we need it, we don't need to then calculated separately, we can simply take the result of this function here(push) store it into a variable and then use that.
+
+const newfr = friends2.unshift("John");
+console.log(friends2);
+console.log(newfr);
+
+// Remove elements
+friends2.pop(); // Last
+const popped = friends2.pop();
+console.log(popped); // Peter
+console.log(friends2); // ['John', 'Michael', 'Steven']
+
+friends2.shift(); //First
+console.log(friends2); // ['Michael', 'Steven']
+
+console.log(friends2.indexOf("Steven")); // 1
+console.log(friends2.indexOf("Bob")); // -1
+
+friends2.push(23);
+
+//includes added Es6
+console.log(friends2.includes("Steven")); // true
+console.log(friends2.includes("Bob")); // false
+console.log(friends2.includes("23")); // false
+console.log(friends2.includes(23)); // true
+
+if (friends2.includes("Steven")) {
+  console.log("You have a friend called Steven");
+}
