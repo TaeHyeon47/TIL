@@ -128,9 +128,9 @@ const renderCountry = function (data, className = "") {
 // Since ES6 there is actually a way of escaping callback hell
 // by using something called promises.
 
-////////////////////////////////////////
-////// Promises and the Fetch API //////
-////////////////////////////////////////
+////////////////////////////////
+////// Consuming Promises //////
+////////////////////////////////
 
 // const request = new XMLHttpRequest();
 // request.open("GET", `https://restcountries.com/v2/name/${country}`);
@@ -150,7 +150,7 @@ const getCountryData = function (country) {
   fetch(`https://restcountries.com/v2/name/${country}`)
     .then(function (response) {
       console.log(response);
-      return response.json(); // he json method here is a method that is available on all the response objects that is coming
+      return response.json(); // json method here is a method that is available on all the response objects that is coming.
       // that this json function itself, is actually also an asynchronous function. it will also return a new promise.
     })
     .then(function (data) {
@@ -165,6 +165,31 @@ getCountryData("portugal");
 
 // So in order to be able to actually read this data from the body,
 // We need to call the json method on the response.
+
+const getCountryData2 = function (country) {
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    .then((response) => response.json())
+    .then((data) => {
+      renderCountry(data[0]);
+      const neighbour = data[0].borders[0];
+
+      if (!neighbour) return;
+    });
+};
+
+getCountryData("portugal");
+
+////////////////////////////////
+////// Chaining Promises ///////
+////////////////////////////////
+
+const getCountryData3 = function (country) {
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    .then((response) => response.json())
+    .then((data) => renderCountry(data[0]));
+};
+
+getCountryData("portugal");
 
 // ////////////////////////////////////////////////////
 // ////// Asynchronous JavaScript, AJAX and APIs //////
