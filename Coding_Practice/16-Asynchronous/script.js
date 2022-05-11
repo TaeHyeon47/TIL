@@ -146,22 +146,22 @@ const renderCountry = function (data, className = "") {
 // Now into the then method, we need to pass a callback function that we want to be executed
 // as soon as the promise is actually fulfilled.
 
-const getCountryData = function (country) {
-  fetch(`https://restcountries.com/v2/name/${country}`)
-    .then(function (response) {
-      console.log(response);
-      return response.json(); // json method here is a method that is available on all the response objects that is coming.
-      // that this json function itself, is actually also an asynchronous function. it will also return a new promise.
-    })
-    .then(function (data) {
-      console.log(data);
-      renderCountry(data[0]);
-    }); // this function will actually receive one argument
-  // and that argument is the resulting value of the fulfilled promise.
-  // So let me call it response here because this is the response of an AJAX call in this case.
-};
+// const getCountryData = function (country) {
+//   fetch(`https://restcountries.com/v2/name/${country}`)
+//     .then(function (response) {
+//       console.log(response);
+//       return response.json(); // json method here is a method that is available on all the response objects that is coming.
+//       // that this json function itself, is actually also an asynchronous function. it will also return a new promise.
+//     })
+//     .then(function (data) {
+//       console.log(data);
+//       renderCountry(data[0]);
+//     }); // this function will actually receive one argument
+//   // and that argument is the resulting value of the fulfilled promise.
+//   // So let me call it response here because this is the response of an AJAX call in this case.
+// };
 
-getCountryData("portugal");
+// getCountryData("portugal");
 
 // // So in order to be able to actually read this data from the body,
 // // We need to call the json method on the response.
@@ -192,24 +192,41 @@ getCountryData("portugal");
 ////// Chaining Promises ///////
 ////////////////////////////////
 
-const getCountryData3 = function (country) {
-  // Country 1
+// const getCountryData = function (country) {
+//   // Country 1
+//   fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+//     .then((response) => response.json()) // this json function itself is actually also an asynchronous function.
+//     // And so what that means, is that it will also return a new promise.
+//     .then((data) => {
+//       renderCountry(data[0]);
+//       const neighbour = data[0].borders[0];
+//       if (!neighbour) return;
+//       // Country 2
+//       // We will be able to chain a new then method on the result of this then method.
+//       // "then" method always returns a promise,
+//       // return fetch(`https://restcountries.eu/rest/v2/alpha${neighbour}`);
+//       return 23;
+//     })
+//     .then((data) => alert(23));
+// };
+
+// getCountryData("portugal");
+
+const getCountryData = function (country) {
   fetch(`https://restcountries.com/v2/name/${country}`)
     .then((response) => {
       response.json();
-    }) // this json function itself is actually also an asynchronous function.
-    // And so what that means, is that it will also return a new promise.
+    })
     .then((data) => {
       renderCountry(data[0]);
       const neighbour = data[0].borders[0];
+      // const neighbour = data[0].borders?.[0];
+
       if (!neighbour) return;
     });
-
-  // Country 2
-  return fetch(`https://restcountries.eu/rest/v2/alpha${neighbour}`);
 };
 
-// getCountryData3("portugal");
+getCountryData("portugal");
 
 // ////////////////////////////////////////////////////
 // ////// Asynchronous JavaScript, AJAX and APIs //////
