@@ -132,20 +132,20 @@ const renderCountry = function (data, className = "") {
 ////// Consuming Promises //////
 ////////////////////////////////
 
-const getCountryData = function (country) {
-  fetch(`https://restcountries.com/v2/name/${country}`) // This will retrun a promise.
-    .then(function (a) {
-      // All promises we can call the "then" method that is available on all promises.
-      console.log(a);
-      return a.json(); // This here will be a new promise
-    })
-    .then(function (b) {
-      console.log(b);
-      renderCountry(b[0]);
-    });
-};
+// const getCountryData = function (country) {
+//   fetch(`https://restcountries.com/v2/name/${country}`) // This will retrun a promise.
+//     .then(function (a) {
+//       // All promises we can call the "then" method that is available on all promises.
+//       console.log(a);
+//       return a.json(); // This here will be a new promise
+//     })
+//     .then(function (b) {
+//       console.log(b);
+//       renderCountry(b[0]);
+//     });
+// };
 
-getCountryData("portugal");
+// getCountryData("portugal");
 
 // Now into the "then" method, we need to pass a callback function
 // that we want to be executed as soon as the promise is actually fulfilled.
@@ -162,23 +162,20 @@ getCountryData("portugal");
 ////// Chaining Promises ///////
 ////////////////////////////////
 
-// const getCountryData1 = function (country) {
-//   fetch(`https://restcountries.com/v2/name/${country}`)
-//     .then((response) => {
-//       console.log(response);
-//       return response.json();
-//     })
-//     .then((data) => {
-//       renderCountry(data[0]);
-//       const neighbour = data[0].borders[0];
-//       if (!neighbour) return;
+const getCountryData1 = function (country) {
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    .then((response) => response.json())
+    .then((data) => {
+      renderCountry(data[0]);
+      const neighbour = data[0].borders[0];
+      // const neighbour = data[0].borders?.[0];
+      if (!neighbour) return;
+      return 23;
+    })
+    .then((data) => alert(data));
+};
 
-//       return 23;
-//     })
-//     .then((data) => alert(23));
-// };
-
-// getCountryData1("portugal");
+getCountryData1("portugal");
 
 // ////////////////////////////////////////////////////
 // ////// Asynchronous JavaScript, AJAX and APIs //////
