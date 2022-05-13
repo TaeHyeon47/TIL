@@ -162,6 +162,23 @@ const renderCountry = function (data, className = "") {
 ////// Chaining Promises ///////
 ////////////////////////////////
 
+// const getCountryData1 = function (country) {
+//   fetch(`https://restcountries.com/v2/name/${country}`)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       renderCountry(data[0]);
+//       const neighbour = data[0].borders[0];
+//       // const neighbour = data[0].borders?.[0];
+//       if (!neighbour) return;
+//       return 23;
+//     })
+//     .then((data) => alert(data));
+// };
+
+// getCountryData1("portugal");
+
+// Instead of the callback hell
+// We have what we call a flat chain of promises.
 const getCountryData1 = function (country) {
   fetch(`https://restcountries.com/v2/name/${country}`)
     .then((response) => response.json())
@@ -170,12 +187,14 @@ const getCountryData1 = function (country) {
       const neighbour = data[0].borders[0];
       // const neighbour = data[0].borders?.[0];
       if (!neighbour) return;
-      return 23;
+      return fetch(`https://restcountries.com/v2/alpha/${neighbour}`); // So always return to promise
     })
-    .then((data) => alert(data));
+    .then((response) => response.json())
+    .then((data) => renderCountry(data, "neighbour"));
 };
 
-getCountryData1("portugal");
+// getCountryData1("portugal");
+getCountryData1("korea");
 
 // ////////////////////////////////////////////////////
 // ////// Asynchronous JavaScript, AJAX and APIs //////
