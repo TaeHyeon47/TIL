@@ -3,6 +3,28 @@
 const btn = document.querySelector(".btn-country");
 const countriesContainer = document.querySelector(".countries");
 
+const renderCountry = function (data, className = "") {
+  const html = `<article class="country ${className}">
+   <img class="country__img" src="${data.flag}" />
+   <div class="country__data">
+     <h3 class="country__name">${data.name}</h3>
+     <h4 class="country__region">${data.region}</h4>
+     <p class="country__row"><span>👫</span>${(
+       +data.population / 1000000
+     ).toFixed(1)}</p>
+     <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+     <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
+   </div>
+ </article>`;
+  countriesContainer.insertAdjacentHTML("beforeend", html);
+  // countriesContainer.style.opacity = 1;
+};
+
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText("beforeend", msg);
+  // countriesContainer.style.opacity = 1;
+};
+
 ///////////////////////////////////////
 
 ////////////////////////////////////////////////////
@@ -59,22 +81,22 @@ const countriesContainer = document.querySelector(".countries");
 ////// Welcome to Callback Hell //////
 //////////////////////////////////////
 
-const renderCountry = function (data, className = "") {
-  const html = `<article class="country ${className}">
-   <img class="country__img" src="${data.flag}" />
-   <div class="country__data">
-     <h3 class="country__name">${data.name}</h3>
-     <h4 class="country__region">${data.region}</h4>
-     <p class="country__row"><span>👫</span>${(
-       +data.population / 1000000
-     ).toFixed(1)}</p>
-     <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
-     <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
-   </div>
- </article>`;
-  countriesContainer.insertAdjacentHTML("beforeend", html);
-  countriesContainer.style.opacity = 1;
-};
+// const renderCountry = function (data, className = "") {
+//   const html = `<article class="country ${className}">
+//    <img class="country__img" src="${data.flag}" />
+//    <div class="country__data">
+//      <h3 class="country__name">${data.name}</h3>
+//      <h4 class="country__region">${data.region}</h4>
+//      <p class="country__row"><span>👫</span>${(
+//        +data.population / 1000000
+//      ).toFixed(1)}</p>
+//      <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+//      <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
+//    </div>
+//  </article>`;
+//   countriesContainer.insertAdjacentHTML("beforeend", html);
+//   countriesContainer.style.opacity = 1;
+// };
 
 // const getCountryAndNeighbour = function (country) {
 //   // AJAX call country 1
@@ -179,9 +201,66 @@ const renderCountry = function (data, className = "") {
 
 // Instead of the callback hell
 // We have what we call a flat chain of promises.
+// const getCountryData1 = function (country) {
+//   fetch(`https://restcountries.com/v2/name/${country}`)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       renderCountry(data[0]);
+//       const neighbour = data[0].borders[0];
+//       // const neighbour = data[0].borders?.[0];
+//       if (!neighbour) return;
+//       return fetch(`https://restcountries.com/v2/alpha/${neighbour}`); // So always return to promise
+//     })
+//     .then((response) => response.json())
+//     .then((data) => renderCountry(data, "neighbour"));
+// };
+
+// // getCountryData1("portugal");
+
+// btn.addEventListener("click", function () {
+//   getCountryData1("portugal");
+// });
+
+// ////////////////////////////////////////
+// ////// Handling Rejected Promises //////
+// ////////////////////////////////////////
+
+// there are two ways of handling rejections
+// the first one is to pass a second callback function into the then method.
+// Secend, we can handle all the errors no matter where they appear in the chain right at the end of the chain by adding a catch method.
+// besides then and catch there is also the finally method.
+
+// catch
+// So errors basically propagate down the chain until they are caught,
+// and only if they're not caught anywhere then we get that Uncaught error
+// 캐치문도 결국 프로미스를 리턴한다. 그래서 아래의 마지막 finally가 실행되는 것이다.
+
+// finally
+// No matter if the promise is fulfilled or rejected this callback finally function that we define here
+// is gonna be called always. So that's the difference between the other two.
+// then의 경우 프로미스가 성공(fulfilled)한 경우에만 콜되고
+// catch의 경우에는 프로미스가 실패(rejected)한 경우에만 콜되지만
+// finally는 그런거 상관 없이 항상 호출된다!
+// And one good example of that is to hide a loading spinner
+
+// 에러 네트워크가 연결되어 있고, 잘못된 국가명을 입력했을 때
+// the fetch promise only rejects when there is no internet connection,
+// but with a 404 error like this which is not a real error
+// But anyway with this 404 the fetch promise will still get fulfilled.
+// So there is no rejection and so our catch handler cannot pick up on this error.
+// It does pick up on this other error so in this one here,
+// but that's not the one that we actually want to handle.
+// In this case we really want to tell the user that no country was found with this name.
+// 인터넷 연결이 끊기지 않는 이상 프로미스는 항상 fulfilled 상태가 된다.
+// 다른 유형의 에러가 반환되고 내가 원하는 에러를 뱉어 내지는 않는다.
+
 const getCountryData1 = function (country) {
   fetch(`https://restcountries.com/v2/name/${country}`)
-    .then((response) => response.json())
+    .then(
+      (response) => response.json()
+      // (err) => alert(err) // We can also pass in a second callback for error
+      // then 메소드에 두번째 콜백함수로 오류를 잡는 방법은 비효율 적이다.
+    )
     .then((data) => {
       renderCountry(data[0]);
       const neighbour = data[0].borders[0];
@@ -189,12 +268,26 @@ const getCountryData1 = function (country) {
       if (!neighbour) return;
       return fetch(`https://restcountries.com/v2/alpha/${neighbour}`); // So always return to promise
     })
-    .then((response) => response.json())
-    .then((data) => renderCountry(data, "neighbour"));
+    .then(
+      (response) => response.json()
+      // (err) => alert(err)
+    )
+    .then((data) => renderCountry(data, "neighbour"))
+    .catch((err) => {
+      // chatch를 사용하면 chain의 어디서 오류가 발생하든 모두 관리할 수 있다.
+      console.error(`${err} 🥲🥲🥲`);
+      renderError(`Something went wrong 🥲🥲 ${err.message}. Try again `);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
 };
 
 // getCountryData1("portugal");
-getCountryData1("korea");
+
+btn.addEventListener("click", function () {
+  getCountryData1("asdasd");
+});
 
 // ////////////////////////////////////////////////////
 // ////// Asynchronous JavaScript, AJAX and APIs //////
