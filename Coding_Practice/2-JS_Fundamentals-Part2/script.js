@@ -364,3 +364,34 @@ console.log(friends2.includes(23)); // true
 if (friends2.includes("Steven")) {
   console.log("You have a friend called Steven");
 }
+
+/////////////////////////////////////
+///// Introduction to Objects ///////
+/////////////////////////////////////
+
+const jonasArray = [
+  "Jonas",
+  "Schmedtmann",
+  2037 - 1991,
+  "teacher",
+  ["Michael", "Peter", "Steven"],
+];
+
+// The key is basically the variable name.
+// The value can be of any type that we want here.
+// Now each of these keys is also called a property.
+// this object, which is called Jonas has five properties.
+// the object literal Syntax
+const jonas = {
+  firstName: "Jonas",
+  lastName: "Schmedtmann",
+  age: 2037 - 1991,
+  job: "teacher",
+  friends: ["Michael", "Peter", "Steven"],
+};
+
+// the big difference between objects and arrays,
+// is that in objects, the order of these values
+// does not matter at all when we want to retrieve them.
+// object(객체)의 경우, 배열과 달리 순서를 신경쓸 필요가 없다!
+// 배열의 경우 순서를 신경써야 한다.
