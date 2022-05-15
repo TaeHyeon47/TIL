@@ -19,7 +19,7 @@
 // Second, it will actually create visible errors for us in certain situations in which without strict mode
 // JavaScript will simply fail silently without letting us know that we did a mistake.
 
-// "use strict"; // 없으면 에러 메세지가 나오지 않지만, 있으면 에러메세지가 나온다.
+// "use strict"; // 없으면 에러 메세지가 나오지 않지만, 있으면 에러메세지가 나오는 경우가 있다.
 
 // let hasDriversLicense = false;
 // const passTest = true;
@@ -100,7 +100,7 @@
 ////// Function Declarations vs. Expressions //////
 ///////////////////////////////////////////////////
 
-// Function Declarations(선언문)
+// Function Declarations(선언형 함수)
 // because we simply use the function keyword
 // to declare a function a bit like we declare a variable.
 // So let's now write another function declaration.
@@ -113,8 +113,8 @@
 // }
 // console.log(age1);
 
-//Function expression (expression produces a value)
-//we simply write function basically without a name
+//Function expression (표현형 함수를) (expression produces a value)
+//We simply write function basically without a name
 //and then we still define the parameter,
 //we still define the function body,
 //which is gonna be the same as this one
@@ -178,7 +178,7 @@ console.log(age1, age2);
 // The first reason for that is that we don't need the curly braces,
 // And second is that the return actually happens implicitly. without us having to explicitly write the return keyword.
 // that this is gonna be extremely helpful in certain situations.
-// const calcAge3 = (birthYeah) => 2037 - birthYeah; // So we can only omit the return here in case we have a one-liner function like here.
+// const calcAge3 = (birthYeah) => 2037 - birthYeah; So we can only omit the return here in case we have a one-liner function like here.
 // const age3 = calcAge3(1991);
 // console.log(age3);
 
