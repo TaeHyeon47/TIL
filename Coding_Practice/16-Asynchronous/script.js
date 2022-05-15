@@ -243,7 +243,7 @@ const renderError = function (msg) {
 // finally는 그런거 상관 없이 항상 호출된다!
 // And one good example of that is to hide a loading spinner
 
-// 에러 네트워크가 연결되어 있고, 잘못된 국가명을 입력했을 때
+// 에러 - 네트워크가 연결되어 있고, 잘못된 국가명을 입력했을 때
 // the fetch promise only rejects when there is no internet connection,
 // but with a 404 error like this which is not a real error
 // But anyway with this 404 the fetch promise will still get fulfilled.
@@ -253,28 +253,84 @@ const renderError = function (msg) {
 // In this case we really want to tell the user that no country was found with this name.
 // 인터넷 연결이 끊기지 않는 이상 프로미스는 항상 fulfilled 상태가 된다.
 // 다른 유형의 에러가 반환되고 내가 원하는 에러를 뱉어 내지는 않는다.
+// 또한 fetch function이 reject로 반환 되지도 않는다.
+
+// const getCountryData1 = function (country) {
+//   fetch(`https://restcountries.com/v2/name/${country}`)
+//     .then(
+//       (response) => response.json()
+//       // (err) => alert(err) // We can also pass in a second callback for error
+//       // then 메소드에 두번째 콜백함수로 오류를 잡는 방법은 비효율 적이다.
+//     )
+//     .then((data) => {
+//       renderCountry(data[0]);
+//       const neighbour = data[0].borders[0];
+//       // const neighbour = data[0].borders?.[0];
+//       if (!neighbour) return;
+//       return fetch(`https://restcountries.com/v2/alpha/${neighbour}`); // So always return to promise
+//     })
+//     .then(
+//       (response) => response.json()
+//       // (err) => alert(err)
+//     )
+//     .then((data) => renderCountry(data, "neighbour"))
+//     .catch((err) => {
+//       // chatch를 사용하면 chain의 어디서 오류가 발생하든 모두 관리할 수 있다.
+//       console.error(`${err} 🥲🥲🥲`);
+//       renderError(`Something went wrong 🥲🥲 ${err.message}. Try again `);
+//     })
+//     .finally(() => {
+//       countriesContainer.style.opacity = 1;
+//     });
+// };
+
+// // getCountryData1("portugal");
+
+// btn.addEventListener("click", function () {
+//   getCountryData1("asdasd");
+// });
+
+//////////////////////////////////////
+////// Throwing Errors Manually //////
+//////////////////////////////////////
+
+const getJSON = function (url) {
+  fetch(url).then();
+};
 
 const getCountryData1 = function (country) {
   fetch(`https://restcountries.com/v2/name/${country}`)
-    .then(
-      (response) => response.json()
-      // (err) => alert(err) // We can also pass in a second callback for error
-      // then 메소드에 두번째 콜백함수로 오류를 잡는 방법은 비효율 적이다.
-    )
+    .then((response) => {
+      console.log(response);
+
+      // We create the new error by using again, "Error" constructor function, basically,
+      // and then we pass in a message, which is gonna be the error message,
+      // then we use the throw keyword here, which will immediately terminate the current function. So just like return does it.
+      // throw는 return과 같이 즉시 함수를 종료한다.
+      // throw Error를 통해 프로미스는 즉각적으로 reject 되어진다. (없으면 reject는 이루어지지 않음..)
+
+      if (!response.ok) {
+        throw new Error(`Country not found ${response.status}`);
+      }
+
+      return response.json();
+    })
     .then((data) => {
       renderCountry(data[0]);
-      const neighbour = data[0].borders[0];
-      // const neighbour = data[0].borders?.[0];
+      // const neighbour = data[0].borders[0];
+      const neighbour = "asdasd";
       if (!neighbour) return;
       return fetch(`https://restcountries.com/v2/alpha/${neighbour}`); // So always return to promise
     })
-    .then(
-      (response) => response.json()
-      // (err) => alert(err)
-    )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Country not found ${response.status}`);
+      }
+
+      return response.json();
+    })
     .then((data) => renderCountry(data, "neighbour"))
     .catch((err) => {
-      // chatch를 사용하면 chain의 어디서 오류가 발생하든 모두 관리할 수 있다.
       console.error(`${err} 🥲🥲🥲`);
       renderError(`Something went wrong 🥲🥲 ${err.message}. Try again `);
     })
@@ -283,10 +339,8 @@ const getCountryData1 = function (country) {
     });
 };
 
-// getCountryData1("portugal");
-
 btn.addEventListener("click", function () {
-  getCountryData1("asdasd");
+  getCountryData1("korea");
 });
 
 // ////////////////////////////////////////////////////
