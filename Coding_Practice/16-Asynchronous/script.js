@@ -294,40 +294,69 @@ const renderError = function (msg) {
 ////// Throwing Errors Manually //////
 //////////////////////////////////////
 
-const getJSON = function (url) {
-  fetch(url).then();
+// const getCountryData1 = function (country) {
+//   fetch(`https://restcountries.com/v2/name/${country}`)
+//     .then((response) => {
+//       console.log(response);
+
+//       // We create the new error by using again, "Error" constructor function, basically,
+//       // and then we pass in a message, which is gonna be the error message,
+//       // then we use the throw keyword here, which will immediately terminate the current function. So just like return does it.
+//       // throw는 return과 같이 즉시 함수를 종료한다.
+//       // throw Error를 통해 프로미스는 즉각적으로 reject 되어진다. (없으면 reject는 이루어지지 않음..)
+
+//       if (!response.ok) {
+//         throw new Error(`Country not found ${response.status}`);
+//       }
+
+//       return response.json();
+//     })
+//     .then((data) => {
+//       renderCountry(data[0]);
+//       // const neighbour = data[0].borders[0];
+//       const neighbour = "asdasd";
+//       if (!neighbour) return;
+//       return fetch(`https://restcountries.com/v2/alpha/${neighbour}`); // So always return to promise
+//     })
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error(`Country not found ${response.status}`);
+//       }
+
+//       return response.json();
+//     })
+//     .then((data) => renderCountry(data, "neighbour"))
+//     .catch((err) => {
+//       console.error(`${err} 🥲🥲🥲`);
+//       renderError(`Something went wrong 🥲🥲 ${err.message}. Try again `);
+//     })
+//     .finally(() => {
+//       countriesContainer.style.opacity = 1;
+//     });
+// };
+
+const getJSON = function (url, errorMsg = "Something went wrong") {
+  return fetch(url).then((response) => {
+    if (!response.ok) {
+      throw new Error(`${errorMsg} ${response.status}`);
+    }
+    return response.json();
+  });
 };
 
 const getCountryData1 = function (country) {
-  fetch(`https://restcountries.com/v2/name/${country}`)
-    .then((response) => {
-      console.log(response);
-
-      // We create the new error by using again, "Error" constructor function, basically,
-      // and then we pass in a message, which is gonna be the error message,
-      // then we use the throw keyword here, which will immediately terminate the current function. So just like return does it.
-      // throw는 return과 같이 즉시 함수를 종료한다.
-      // throw Error를 통해 프로미스는 즉각적으로 reject 되어진다. (없으면 reject는 이루어지지 않음..)
-
-      if (!response.ok) {
-        throw new Error(`Country not found ${response.status}`);
-      }
-
-      return response.json();
-    })
+  getJSON(`https://restcountries.com/v2/name/${country}`, "Country not foun")
     .then((data) => {
       renderCountry(data[0]);
-      // const neighbour = data[0].borders[0];
-      const neighbour = "asdasd";
-      if (!neighbour) return;
-      return fetch(`https://restcountries.com/v2/alpha/${neighbour}`); // So always return to promise
-    })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Country not found ${response.status}`);
-      }
+      const neighbour = data[0].borders[0];
+      // const neighbour = "";
 
-      return response.json();
+      if (!neighbour) throw new Error("No neighbour found!");
+
+      return getJSON(
+        `https://restcountries.com/v2/alpha/${neighbour}`,
+        "Country not found"
+      ); // So always return to promise
     })
     .then((data) => renderCountry(data, "neighbour"))
     .catch((err) => {
@@ -340,7 +369,7 @@ const getCountryData1 = function (country) {
 };
 
 btn.addEventListener("click", function () {
-  getCountryData1("korea");
+  getCountryData1("australia");
 });
 
 // ////////////////////////////////////////////////////
