@@ -250,70 +250,70 @@ console.log(age1, age2);
 ///// Introduction to Arrays //////
 ///////////////////////////////////
 
-const friend1 = "Michael";
-const friend2 = "Steven";
-const friend3 = "Peter";
+// const friend1 = "Michael";
+// const friend2 = "Steven";
+// const friend3 = "Peter";
 
-const friends = ["Michael", "Steven", "Peter"];
-console.log(friends);
+// const friends = ["Michael", "Steven", "Peter"];
+// console.log(friends);
 
-// const years = new Array(1991, 1984, 2008, 2020); // here we used a different way of creating the Array, which was using this Array function.
+// // const years = new Array(1991, 1984, 2008, 2020); // here we used a different way of creating the Array, which was using this Array function.
 
-console.log(friends[0]);
+// console.log(friends[0]);
 
-// We used here is not only for retrieving elements from the Array
-// but we can also change it to add elements to the Array.
-console.log(friends[2]);
+// // We used here is not only for retrieving elements from the Array
+// // but we can also change it to add elements to the Array.
+// console.log(friends[2]);
 
-friends[2] = "Jay"; // variables declared with const, cannot be changed. And we did in fact declare the friends variable
-console.log(friends); // But I was still able to change one element. isn't that a contradiction?
-// Well what I didn't tell you at the time is that only primitive values are immutable. But an Array is not a primitive value.
-// So we can actually always change it so we can mutate it.
-// friends = ['Bob', 'Alice'] //  illegal
+// friends[2] = "Jay"; // variables declared with const, cannot be changed. And we did in fact declare the friends variable
+// console.log(friends); // But I was still able to change one element. isn't that a contradiction?
+// // Well what I didn't tell you at the time is that only primitive values are immutable. But an Array is not a primitive value.
+// // So we can actually always change it so we can mutate it.
+// // friends = ['Bob', 'Alice'] //  illegal
 
-// Anyway what matters, is that this is gonna be the exact amount of elements that is in the Array. And it's not zero based.
-console.log(friends.length); // this dot length is something called a property which we're gonna talk about a little bit later in the section when we talk about objects.
-// This automatic retrieval of the last element works just fine.
-console.log(friends[friends.length - 1]); // friends.length is not zero based. And so we always need to subtract one from this number here.
+// // Anyway what matters, is that this is gonna be the exact amount of elements that is in the Array. And it's not zero based.
+// console.log(friends.length); // this dot length is something called a property which we're gonna talk about a little bit later in the section when we talk about objects.
+// // This automatic retrieval of the last element works just fine.
+// console.log(friends[friends.length - 1]); // friends.length is not zero based. And so we always need to subtract one from this number here.
 // 'friends.length - 1' is expression. and remember that an expression is something that produces a value.
 // And 'friends.length - 1' is gonna be calculated first. So it will compute friends.length which is three minus one is two, and then it will get friends at position two.
 
-const firstName = "Jonas";
-const jonas = [firstName, "Schemdtmann", 2037 - 1991, "teacher", friends]; // we could even put other Arrays inside of an Array.
-// we have all the relevant data about Jonas in one handy data structure.
-// And that's really convenient because then we don't have to create one variable for each of the data points.
-console.log(jonas);
-console.log(jonas.length);
+// const firstName = "Jonas";
+// const jonas = [firstName, "Schemdtmann", 2037 - 1991, "teacher", friends]; // we could even put other Arrays inside of an Array.
+// // we have all the relevant data about Jonas in one handy data structure.
+// // And that's really convenient because then we don't have to create one variable for each of the data points.
+// console.log(jonas);
+// console.log(jonas.length);
 
-// Exercise
-const calcAge = function (birthYear) {
-  return 2037 - birthYear;
-};
+// // Exercise
+// const calcAge = function (birthYear) {
+//   return 2037 - birthYear;
+// };
 
-const years = [1990, 1967, 2002, 2010, 2018];
-console.log(years);
-console.log(calcAge(years)); // This would be not illegal, I would say but it's not gonna work because this years is an Array.
-// If we pass this years' Array as an argument to the calcAge function. it doesn't know what to do with it.
-// Because this operation here(return 2037 - birthYear;) expects a single value. We cannot do a number minus and array.
+// const years = [1990, 1967, 2002, 2010, 2018];
+// console.log(years);
+// console.log(calcAge(years)); // This would be not illegal, I would say but it's not gonna work because this years is an Array.
+// // If we pass this years' Array as an argument to the calcAge function. it doesn't know what to do with it.
+// // Because this operation here(return 2037 - birthYear;) expects a single value. We cannot do a number minus and array.
 
-console.log(years + 10); // '1990,1967,2002,2010,201810'
-// the plus operator what it does here, is to convert everything to a string.
+// console.log(years + 10); // '1990,1967,2002,2010,201810'
+// // the plus operator what it does here, is to convert everything to a string.
 
-console.log(years - 10); // NaN
-//we cannot do operations with Arrays.
+// console.log(years - 10); // NaN
+// //we cannot do operations with Arrays.
 
-const age1 = calcAge(years[0]);
-const age2 = calcAge(years[1]);
-const age3 = calcAge(years[years.length - 1]);
-console.log(age1, age2, age3);
+// const age1 = calcAge(years[0]);
+// const age2 = calcAge(years[1]);
+// const age3 = calcAge(years[years.length - 1]);
+// console.log(age1, age2, age3);
 
-const ages = [
-  calcAge(years[0]),
-  calcAge(years[1]),
-  calcAge(years[years.length - 1]),
-];
+// const ages = [
+//   calcAge(years[0]),
+//   calcAge(years[1]),
+//   calcAge(years[years.length - 1]),
+// ];
 
-console.log(ages);
+// console.log(ages);
 
 //////////////////////////////////////////////
 ///// Basic Array Operations (Methods) ///////
@@ -322,66 +322,87 @@ console.log(ages);
 // JavaScript has some built in functions that we can basically apply directly on arrays.
 // method called 'push'. push method adds elements to the end of an array.
 
-const friends2 = ["Michael", "Steven", "Peter"];
+// const friends2 = ["Michael", "Steven", "Peter"];
 //Add elements
-const newLength = friends2.push("Jay"); // push is a method which technically is a function. and we call that function directly on the friends array.
-console.log(friends2); // ['Michael', 'Steven', 'Jay', 'Jay']
-console.log(newLength); // 4
+// const newLength = friends2.push("Jay"); // push is a method which technically is a function. and we call that function directly on the friends array.
+// console.log(friends2); // ['Michael', 'Steven', 'Jay', 'Jay']
+// console.log(newLength); // 4
 
 // Now since push is a function here, it can also return something. we already know that we can pass arguments
 // Into functions and we did that here with Jay, then the function can do some work and in this case,
 // The push function does return a value and the value that it returns is the length of the new array.
 // So if we want to capture that data or that value, we can create a new variable for that.
 
-console.log(newLength); // 4
+// console.log(newLength); // 4
 // So we just push an element and call it a day, Because usually we don't immediately need the length of the new array.
 // But in case we need it, we don't need to then calculated separately, we can simply take the result of this function here(push) store it into a variable and then use that.
 
-const newfr = friends2.unshift("John");
-console.log(friends2);
-console.log(newfr);
+// const newfr = friends2.unshift("John");
+// console.log(friends2);
+// console.log(newfr);
 
 // Remove elements
-friends2.pop(); // Last
-const popped = friends2.pop();
-console.log(popped); // Peter
-console.log(friends2); // ['John', 'Michael', 'Steven']
+// friends2.pop(); // Last
+// const popped = friends2.pop();
+// console.log(popped); // Peter
+// console.log(friends2); // ['John', 'Michael', 'Steven']
 
-friends2.shift(); //First
-console.log(friends2); // ['Michael', 'Steven']
+// friends2.shift(); //First
+// console.log(friends2); // ['Michael', 'Steven']
 
-console.log(friends2.indexOf("Steven")); // 1
-console.log(friends2.indexOf("Bob")); // -1
+// console.log(friends2.indexOf("Steven")); // 1
+// console.log(friends2.indexOf("Bob")); // -1
 
-friends2.push(23);
+// friends2.push(23);
 
 //includes added Es6
-console.log(friends2.includes("Steven")); // true
-console.log(friends2.includes("Bob")); // false
-console.log(friends2.includes("23")); // false
-console.log(friends2.includes(23)); // true
+// console.log(friends2.includes("Steven")); // true
+// console.log(friends2.includes("Bob")); // false
+// console.log(friends2.includes("23")); // false
+// console.log(friends2.includes(23)); // true
 
-if (friends2.includes("Steven")) {
-  console.log("You have a friend called Steven");
-}
+// if (friends2.includes("Steven")) {
+//   console.log("You have a friend called Steven");
+// }
 
 /////////////////////////////////////
 ///// Introduction to Objects ///////
 /////////////////////////////////////
 
-const jonasArray = [
-  "Jonas",
-  "Schmedtmann",
-  2037 - 1991,
-  "teacher",
-  ["Michael", "Peter", "Steven"],
-];
+// const jonasArray = [
+//   "Jonas",
+//   "Schmedtmann",
+//   2037 - 1991,
+//   "teacher",
+//   ["Michael", "Peter", "Steven"],
+// ];
 
 // The key is basically the variable name.
 // The value can be of any type that we want here.
 // Now each of these keys is also called a property.
 // this object, which is called Jonas has five properties.
 // the object literal Syntax
+// const jonas = {
+//   firstName: "Jonas",
+//   lastName: "Schmedtmann",
+//   age: 2037 - 1991,
+//   job: "teacher",
+//   friends: ["Michael", "Peter", "Steven"],
+// };
+
+// the big difference between objects and arrays,
+// is that in objects, the order of these values
+// does not matter at all when we want to retrieve them.
+// object(객체)의 경우, 배열과 달리 순서를 신경쓸 필요가 없다!
+// 배열의 경우 순서를 신경써야 한다.
+
+/////////////////////////////////////
+///// Dot vs Bracket Notation ///////
+/////////////////////////////////////
+
+// the order of properties does not matter.
+// 크롬에서 value 값이 알파벳 순서대로 변경된다.
+
 const jonas = {
   firstName: "Jonas",
   lastName: "Schmedtmann",
@@ -390,8 +411,45 @@ const jonas = {
   friends: ["Michael", "Peter", "Steven"],
 };
 
-// the big difference between objects and arrays,
-// is that in objects, the order of these values
-// does not matter at all when we want to retrieve them.
-// object(객체)의 경우, 배열과 달리 순서를 신경쓸 필요가 없다!
-// 배열의 경우 순서를 신경써야 한다.
+console.log(jonas);
+console.log(jonas.lastName);
+console.log(jonas["lastName"]); // we can actually put any expression that we'd like,
+// so we don't have to explicitly write the string here,
+// but instead we can compute it from some operation
+
+const nameKey = "Name";
+console.log(jonas["first" + nameKey]); // we could put any expression here,
+console.log(jonas["last" + nameKey]);
+
+// 언제 dot을 쓰고 언제 Bracket Notation을 써야하는가?
+// When we need to first compute the property name like we did here with the first and last name.
+// Then of course we have to use the bracket notation in any other case, just use the dot notation,
+
+// prompt는 String 형태로 저장됨.
+const interestedIn = prompt(
+  "What do you want to know about Jonas? Choose between firstName, lastName, age, job, and friends"
+);
+console.log(interestedIn);
+console.log(jonas.interestedIn); // undefined is what we get when we try to access a property on an object that does not exist.
+console.log(jonas[interestedIn]);
+
+if (jonas[interestedIn]) {
+  console.log("hi", jonas[interestedIn]);
+} else {
+  console.log(
+    "Wrong request! Choose between firstName, lastName, age, job, and friends"
+  );
+}
+
+jonas.location = "Portugal";
+jonas["twitter"] = "@jonasschmedtman";
+
+console.log(jonas);
+
+// Challenge
+// "Jonas has 3 friends, and his best friend is called Michael"
+
+console.log(
+  `${jonas.firstName} has ${jonas.friends.length} friends, 
+  and his best friend is called ${jonas.friends[0]}`
+);
