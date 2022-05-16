@@ -403,53 +403,107 @@ console.log(age1, age2);
 // the order of properties does not matter.
 // 크롬에서 value 값이 알파벳 순서대로 변경된다.
 
+// const jonas = {
+//   firstName: "Jonas",
+//   lastName: "Schmedtmann",
+//   age: 2037 - 1991,
+//   job: "teacher",
+//   friends: ["Michael", "Peter", "Steven"],
+// };
+
+// console.log(jonas);
+// console.log(jonas.lastName);
+// console.log(jonas["lastName"]); // we can actually put any expression that we'd like,
+// // so we don't have to explicitly write the string here,
+// // but instead we can compute it from some operation
+
+// const nameKey = "Name";
+// console.log(jonas["first" + nameKey]); // we could put any expression here,
+// console.log(jonas["last" + nameKey]);
+
+// // 언제 dot을 쓰고 언제 Bracket Notation을 써야하는가?
+// // When we need to first compute the property name like we did here with the first and last name.
+// // Then of course we have to use the bracket notation in any other case, just use the dot notation,
+
+// // prompt는 String 형태로 저장됨.
+// const interestedIn = prompt(
+//   "What do you want to know about Jonas? Choose between firstName, lastName, age, job, and friends"
+// );
+// console.log(interestedIn);
+// console.log(jonas.interestedIn); // undefined is what we get when we try to access a property on an object that does not exist.
+// console.log(jonas[interestedIn]);
+
+// if (jonas[interestedIn]) {
+//   console.log("hi", jonas[interestedIn]);
+// } else {
+//   console.log(
+//     "Wrong request! Choose between firstName, lastName, age, job, and friends"
+//   );
+// }
+
+// jonas.location = "Portugal";
+// jonas["twitter"] = "@jonasschmedtman";
+
+// console.log(jonas);
+
+// // Challenge
+// // "Jonas has 3 friends, and his best friend is called Michael"
+
+// console.log(
+//   `${jonas.firstName} has ${jonas.friends.length} friends,
+//   and his best friend is called ${jonas.friends[0]}`
+// );
+
+////////////////////////////
+///// Object Methods ///////
+////////////////////////////
+
+// expresstion형 함수만 객체 프로퍼티로 사용할 수 있다.
+// 선언형 함수는 객체 프로퍼티로 사용할 수 없다.
+
+// JavaScript gives us access to a special variable called this.
+// And so what we can do now is in this calcAge function,
+// we can read the birth year directly from this object itself without having to pass it in
+// as a parameter here into this function.
+
 const jonas = {
   firstName: "Jonas",
   lastName: "Schmedtmann",
-  age: 2037 - 1991,
+  birthYear: 1991,
   job: "teacher",
   friends: ["Michael", "Peter", "Steven"],
+  hasDriversLicense: true,
+
+  // calcAge: function (birthYear) {
+  //   return 2037 - birthYear;
+  // },
+
+  // this key word or the this variable is basically equal to the object
+  // on which the method is called, it is equal to the object calling the method.
+
+  // we create a new property on the current object.
+
+  calcAge: function () {
+    // console.log(this);
+    this.age = 2037 - this.birthYear;
+    return this.age;
+  },
+
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()}-year old ${
+      jonas.job
+    }, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license.
+    `;
+  },
 };
 
-console.log(jonas);
-console.log(jonas.lastName);
-console.log(jonas["lastName"]); // we can actually put any expression that we'd like,
-// so we don't have to explicitly write the string here,
-// but instead we can compute it from some operation
-
-const nameKey = "Name";
-console.log(jonas["first" + nameKey]); // we could put any expression here,
-console.log(jonas["last" + nameKey]);
-
-// 언제 dot을 쓰고 언제 Bracket Notation을 써야하는가?
-// When we need to first compute the property name like we did here with the first and last name.
-// Then of course we have to use the bracket notation in any other case, just use the dot notation,
-
-// prompt는 String 형태로 저장됨.
-const interestedIn = prompt(
-  "What do you want to know about Jonas? Choose between firstName, lastName, age, job, and friends"
-);
-console.log(interestedIn);
-console.log(jonas.interestedIn); // undefined is what we get when we try to access a property on an object that does not exist.
-console.log(jonas[interestedIn]);
-
-if (jonas[interestedIn]) {
-  console.log("hi", jonas[interestedIn]);
-} else {
-  console.log(
-    "Wrong request! Choose between firstName, lastName, age, job, and friends"
-  );
-}
-
-jonas.location = "Portugal";
-jonas["twitter"] = "@jonasschmedtman";
-
-console.log(jonas);
+// console.log(jonas.calcAge(1991));
+console.log(jonas.calcAge()); // this 키워드 사용 시
+// console.log(jonas["calcAge"](1991));
+console.log(jonas.age);
+console.log(jonas.age);
+console.log(jonas.age);
 
 // Challenge
-// "Jonas has 3 friends, and his best friend is called Michael"
-
-console.log(
-  `${jonas.firstName} has ${jonas.friends.length} friends, 
-  and his best friend is called ${jonas.friends[0]}`
-);
+// "Jonas is a 46-year old teacher, and he has a driver's License"
+console.log(jonas.getSummary());
