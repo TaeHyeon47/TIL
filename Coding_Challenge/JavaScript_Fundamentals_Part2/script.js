@@ -170,3 +170,28 @@ if (mark.calcBMI() > john.calcBMI()) {
 }
 
 // //////// Other Answer ////////
+
+const mark2 = {
+  fullName: "Mark Miller",
+  mass: 78,
+  height: 1.69,
+  calcBMI: function () {
+    this.bmi = this.mass / this.height ** 2;
+    return this.bmi;
+  },
+};
+
+const john2 = {
+  fullName: "John Smith",
+  mass: 92,
+  height: 1.95,
+  calcBMI: function () {
+    this.bmi = this.mass / this.height ** 2;
+    return this.bmi;
+  },
+};
+
+mark2.calcBMI();
+john2.calcBMI();
+console.log(mark2.bmi);
+console.log(john2.bmi);
