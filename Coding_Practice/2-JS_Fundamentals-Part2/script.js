@@ -466,42 +466,51 @@ console.log(age1, age2);
 // we can read the birth year directly from this object itself without having to pass it in
 // as a parameter here into this function.
 
-const jonas = {
-  firstName: "Jonas",
-  lastName: "Schmedtmann",
-  birthYear: 1991,
-  job: "teacher",
-  friends: ["Michael", "Peter", "Steven"],
-  hasDriversLicense: true,
+// const jonas = {
+//   firstName: "Jonas",
+//   lastName: "Schmedtmann",
+//   birthYear: 1991,
+//   job: "teacher",
+//   friends: ["Michael", "Peter", "Steven"],
+//   hasDriversLicense: true,
 
-  // calcAge: function (birthYear) {
-  //   return 2037 - birthYear;
-  // },
+//   // calcAge: function (birthYear) {
+//   //   return 2037 - birthYear;
+//   // },
 
-  // this key word or the this variable is basically equal to the object
-  // on which the method is called, it is equal to the object calling the method.
-  // we create a new property on the current object.
+//   // this key word or the this variable is basically equal to the object
+//   // on which the method is called, it is equal to the object calling the method.
+//   // we create a new property on the current object.
 
-  calcAge: function () {
-    // console.log(this);
-    this.age = 2037 - this.birthYear;
-    return this.age;
-  },
+//   calcAge: function () {
+//     // console.log(this);
+//     this.age = 2037 - this.birthYear;
+//     return this.age;
+//   },
 
-  getSummary: function () {
-    return `${this.firstName} is a ${this.calcAge()}-year old ${jonas.job}, 
-    and he has ${this.hasDriversLicense ? "a" : "no"} driver's license.
-    `;
-  },
-};
+//   getSummary: function () {
+//     return `${this.firstName} is a ${this.calcAge()}-year old ${jonas.job},
+//     and he has ${this.hasDriversLicense ? "a" : "no"} driver's license.
+//     `;
+//   },
+// };
 
-// console.log(jonas.calcAge(1991));
-console.log(jonas.calcAge()); // this 키워드 사용 시
-// console.log(jonas["calcAge"](1991));
-console.log(jonas.age);
-console.log(jonas.age);
-console.log(jonas.age);
+// // console.log(jonas.calcAge(1991));
+// console.log(jonas.calcAge()); // this 키워드 사용 시
+// // console.log(jonas["calcAge"](1991));
+// console.log(jonas.age);
+// console.log(jonas.age);
+// console.log(jonas.age);
 
-// Challenge
-// "Jonas is a 46-year old teacher, and he has a driver's License"
-console.log(jonas.getSummary());
+// // Challenge
+// // "Jonas is a 46-year old teacher, and he has a driver's License"
+// console.log(jonas.getSummary());
+
+/////////////////////////////////////
+///// Iteration: The for Loop ///////
+/////////////////////////////////////
+
+// for loop keeps running while condition is TRUE
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`Lifting weights repetition ${rep}`);
+}
