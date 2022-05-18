@@ -614,3 +614,6 @@ while (dice !== 6) {
   dice = Math.trunc(Math.random() * 6) + 1; // This will give us a number between zero and five. and then we add one and get one to six.
   if (dice === 6) console.log('Loop is about to end...');
 }
+
+// TODO:
+// FIXME:
