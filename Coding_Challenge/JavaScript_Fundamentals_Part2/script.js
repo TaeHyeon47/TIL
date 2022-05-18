@@ -1,3 +1,4 @@
+'use strict';
 ////////////////////////////////
 ///// Coding Challenge #1 //////
 ////////////////////////////////
@@ -138,60 +139,139 @@
 // Test data: Marks weights 78 kg and is 1.69 m tall. John weights 92 kg and is 1.95 m tall.
 // GOOD LUCK 😀
 
-const mark = {
-  fullname: "Mark Miller",
-  mass: 78,
-  height: 1.69,
-  calcBMI: function () {
-    this.BMI = this.mass / (this.height * this.height);
-    return this.BMI;
-  },
+// const mark = {
+//   fullname: "Mark Miller",
+//   mass: 78,
+//   height: 1.69,
+//   calcBMI: function () {
+//     this.BMI = this.mass / (this.height * this.height);
+//     return this.BMI;
+//   },
+// };
+
+// const john = {
+//   fullname: "John Smith",
+//   mass: 92,
+//   height: 1.95,
+//   calcBMI: function () {
+//     this.BMI = this.mass / this.height ** 2;
+//     return this.BMI;
+//   },
+// };
+
+// // mark.calcBMI();
+// // john.calcBMI();
+
+// if (mark.calcBMI() > john.calcBMI()) {
+//   console.log(
+//     `${mark.fullname} BMI(${mark.BMI}) is higher than ${john.fullname} (${john.BMI})`
+//   );
+// } else {
+//   `${john.fullname} BMI(${john.BMI}) is higher than ${mark.fullname} (${mark.BMI})`;
+// }
+
+// // //////// Other Answer ////////
+
+// const mark2 = {
+//   fullName: "Mark Miller",
+//   mass: 78,
+//   height: 1.69,
+//   calcBMI: function () {
+//     this.bmi = this.mass / this.height ** 2;
+//     return this.bmi;
+//   },
+// };
+
+// const john2 = {
+//   fullName: "John Smith",
+//   mass: 92,
+//   height: 1.95,
+//   calcBMI: function () {
+//     this.bmi = this.mass / this.height ** 2;
+//     return this.bmi;
+//   },
+// };
+
+// mark2.calcBMI();
+// john2.calcBMI();
+// console.log(mark2.bmi);
+// console.log(john2.bmi);
+
+////////////////////////////////
+///// Coding Challenge #4 //////
+////////////////////////////////
+
+// Let's improve Steven's tip calculator even more, this time using loops!
+// Your tasks:
+// 1. Create an array 'bills' containing all 10 test bill values
+// 2. Create empty arrays for the tips and the totals ('tips' and 'totals')
+// 3. Use the 'calcTip' function we wrote before (no need to repeat) to calculate tips and total values (bill + tip) for every bill value in the bills array. Use a for loop to perform the 10 calculations!
+// Test data: 22, 295, 176, 440, 37, 105, 10, 1100, 86 and 52
+// Hints: Call ‘calcTip ‘in the loop and use the push method to add values to the
+// tips and totals arrays 😉 Bonus:
+// 4. Bonus:Writeafunction'calcAverage'whichtakesanarraycalled'arr'as an argument. This function calculates the average of all numbers in the given array. This is a difficult challenge (we haven't done this before)! Here is how to solve it:
+// 4.1. First, you will need to add up all values in the array. To do the addition, start by creating a variable 'sum' that starts at 0. Then loop over the array using a for loop. In each iteration, add the current value to the 'sum' variable. This way, by the end of the loop, you have all values added together
+// 4.2. To calculate the average, divide the sum you calculated before by the length of the array (because that's the number of elements)
+// 4.3. Call the function with the 'totals' array
+// GOOD LUCK 😀
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips = [];
+const totals = [];
+
+const calcTip = (bill) => {
+  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
 };
 
-const john = {
-  fullname: "John Smith",
-  mass: 92,
-  height: 1.95,
-  calcBMI: function () {
-    this.BMI = this.mass / this.height ** 2;
-    return this.BMI;
-  },
+// Bonus
+let avg;
+let sum = 0;
+
+const calcAverage = (arr) => {
+  sum = sum + arr;
+  return sum / totals.length;
 };
 
-// mark.calcBMI();
-// john.calcBMI();
-
-if (mark.calcBMI() > john.calcBMI()) {
-  console.log(
-    `${mark.fullname} BMI(${mark.BMI}) is higher than ${john.fullname} (${john.BMI})`
-  );
-} else {
-  `${john.fullname} BMI(${john.BMI}) is higher than ${mark.fullname} (${mark.BMI})`;
+for (let i = 0; i <= bills.length - 1; i++) {
+  // tips[i] = calcTip(bills[i]);
+  // totals[i] = calcTip(bills[i]) + bills[i];
+  tips.push(calcTip(bills[i]));
+  totals.push(calcTip(bills[i]) + bills[i]);
+  avg = calcAverage(totals[i]);
 }
 
-// //////// Other Answer ////////
+console.log(`Tips : ${tips}, 
+Totals : ${totals}, 
+Avg : ${avg}`);
 
-const mark2 = {
-  fullName: "Mark Miller",
-  mass: 78,
-  height: 1.69,
-  calcBMI: function () {
-    this.bmi = this.mass / this.height ** 2;
-    return this.bmi;
-  },
+//////// Other Answer ////////
+console.log('====== Other Answer ======');
+
+const calcTip2 = (bill) => {
+  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
 };
 
-const john2 = {
-  fullName: "John Smith",
-  mass: 92,
-  height: 1.95,
-  calcBMI: function () {
-    this.bmi = this.mass / this.height ** 2;
-    return this.bmi;
-  },
+const bills2 = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips2 = [];
+const totals2 = [];
+
+for (let i = 0; i < bills2.length; i++) {
+  const tip = calcTip(bills2[i]); // actually in each iteration a new 'tip' variable is gonna be created.
+  // So we're not mutating, we're not changing the original tip that we declare here,
+  tips2.push(tip);
+  totals2.push(tip + bills[i]);
+}
+
+console.log(bills2, tips2, totals2);
+
+const calcAverage2 = function (arr) {
+  let sum2 = 0;
+  for (let i = 0; i < arr.length; i++) {
+    // sum2 = sum2 + arr[i];
+    sum2 += arr[i];
+  }
+  return sum2 / arr.length;
 };
 
-mark2.calcBMI();
-john2.calcBMI();
-console.log(mark2.bmi);
-console.log(john2.bmi);
+console.log(calcAverage2(bills));
+console.log(calcAverage2(totals2));
