@@ -35,10 +35,21 @@ document.querySelector('.check').addEventListener('click', function () {
   console.log(guess, typeof guess);
 
   // 0이 falsy value이기 때문에 제외하기 위해 넣어줌..
+  // When there is no input
   if (!guess) {
     document.querySelector('.message').textContent = 'No number!';
+    // When player wins
   } else if (guess === secretNumber) {
     document.querySelector('.message').textContent = 'Correct Number!';
+
+    // css를 조작하기 위한 프로퍼티는 style이고,
+    // '-'가 들어간 CSS 스타일은 '-'를 제거하고, 케멀케이스를 적용하여 사용한다.
+    // 또한 String 형태로 값을 항상 사용해야한다.
+    document.querySelector('body').style.backgroundColor = '#60b347';
+    // Whenever we are manipulating a Style we always need to specify a string
+    document.querySelector('.number').style.width = '30rem';
+
+    // When guess is too high
   } else if (guess > secretNumber) {
     if (score > 1) {
       document.querySelector('.message').textContent = 'Too high!';
@@ -47,6 +58,7 @@ document.querySelector('.check').addEventListener('click', function () {
     } else {
       document.querySelector('.message').textContent = 'You lost the game!';
     }
+    // When guess is too low
   } else if (guess < secretNumber) {
     if (score > 1) {
       document.querySelector('.message').textContent = 'Too Low!';
