@@ -46,7 +46,6 @@ overlay.addEventListener('click', closeModal);
 // And when you do so please pass in the event object as an argument.
 document.addEventListener('keydown', function (e) {
   console.log(e.key);
-
   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
     closeModal();
   }
