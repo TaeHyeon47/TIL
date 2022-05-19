@@ -21,6 +21,7 @@ console.log(document.querySelector('.guess').value);
 // addEventListener에 넣으면, 클릭할 때마다 새로운 변수가 생성되기 때문에 적합하지 않다.
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
+let highscore = 0;
 // document.querySelector('.score').textContent = score;
 
 // An event is something that happens on the page.
@@ -50,6 +51,11 @@ document.querySelector('.check').addEventListener('click', function () {
     // Whenever we are manipulating a Style we always need to specify a string
     document.querySelector('.number').style.width = '30rem';
     document.querySelector('.number').textContent = secretNumber;
+
+    if (score > highscore) {
+      highscore = score;
+      document.querySelector('.highscore').textContent = highscore;
+    }
 
     // When guess is too high
   } else if (guess > secretNumber) {
