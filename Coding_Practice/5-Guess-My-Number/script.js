@@ -41,8 +41,8 @@ document.querySelector('.check').addEventListener('click', function () {
   // 0이 falsy value이기 때문에 제외하기 위해 넣어줌..
   // When there is no input
   if (!guess) {
-    //  document.querySelector('.message').textContent = 'No number!';
-    document.querySelector('.number').textContent = secretNumber;
+    document.querySelector('.message').textContent = 'No number!';
+    //  document.querySelector('.number').textContent = secretNumber;
     displayMessage('No number!');
 
     // When player wins
