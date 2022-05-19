@@ -30,3 +30,24 @@ for (let i = 0; i < btnsOpenModal.length; i++) {
 // Because it will immediately called a function, as soon as JavaScript executes this line.
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
+
+// document are basically listening for events everywhere.
+// So no matter where they happen on the page.
+// They will always trigger the event handler.
+
+// Key up, which is so it's this one this one only happens when we lift or finger off the keyboard basically
+// Key press is fired continuously as we keep our finger on a certain key.
+// Key down is fired as soon as we just press down the key.
+
+// 'e' = event object (JavaScript, we'll call this function with the event object as an argument.)
+// This works because we do not call this function here or selves.
+// We do not call the function. We only define it here
+// Hey, JavaScript call function when a key down event happens.
+// And when you do so please pass in the event object as an argument.
+document.addEventListener('keydown', function (e) {
+  console.log(e.key);
+
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+    closeModal();
+  }
+});
