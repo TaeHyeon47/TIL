@@ -41,7 +41,10 @@ function calcAge(birthYear) {
 
     if (birthYear >= 1981 && birthYear <= 1996) {
       var millenial = true;
-      const firstName = 'Steven'; // 파라미터 이름은 같이 해도 오류가 안나는 이유
+      // Creating New variablee with same name as outer scope's variable
+      const firstName = 'Steven'; // 함수에 파라미터 이름은 같아도 오류가 안나는 이유
+      // Reassigning outer scope's variable
+      output = 'NEW OUTPUT!';
       const str = `Oh, and you're a millenial, ${firstName}`;
       console.log(str);
 
@@ -50,8 +53,6 @@ function calcAge(birthYear) {
       function add(a, b) {
         return a + b;
       }
-
-      output = 'NEW OUTPUT!';
     }
     //  console.log(str);
     console.log(millenial);
