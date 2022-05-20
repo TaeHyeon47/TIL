@@ -36,12 +36,12 @@ function calcAge(birthYear) {
   const age = 2037 - birthYear;
 
   function printAge() {
-    const output = `${firstName}, You are ${age}, born in ${birthYear}`;
+    let output = `${firstName}, You are ${age}, born in ${birthYear}`;
     console.log(output);
 
     if (birthYear >= 1981 && birthYear <= 1996) {
       var millenial = true;
-      const firstName = 'Steven';
+      const firstName = 'Steven'; // 파라미터 이름은 같이 해도 오류가 안나는 이유
       const str = `Oh, and you're a millenial, ${firstName}`;
       console.log(str);
 
@@ -50,10 +50,13 @@ function calcAge(birthYear) {
       function add(a, b) {
         return a + b;
       }
+
+      output = 'NEW OUTPUT!';
     }
     //  console.log(str);
     console.log(millenial);
-    console.log(add(2, 3));
+    //  console.log(add(2, 3));
+    console.log(output);
   }
   printAge();
 
