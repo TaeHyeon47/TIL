@@ -1,5 +1,9 @@
 'use strict';
 
+////////////////////////////////////
+/////// Scoping in Practice ////////
+////////////////////////////////////
+
 // Every browser has its own JavaScript engine but probably the most well known engine is Google's V-8. but also Node.js
 // So any JavaScript engine always contains a 'call stack' and a 'heap'.
 // call stack : where our code is actually executed using something called execution contexts
@@ -68,3 +72,58 @@ const firstName = 'Jonas';
 calcAge(1991);
 // console.log(age);
 // printAge();
+
+///////////////////////////////////////////////////////////
+/////// Variable Environment: Hoisting and The TDZ ////////
+///////////////////////////////////////////////////////////
+
+// Function expressions and arrows are simply variables.
+// so they behave the exact same way as variables in regard to hoisting.
+// (let/const 또는 var에 따라서 호이스팅이 결정된다)
+// this is actually the reason why I told you earlier before we write them in the code. unlike function declarations.
+
+/////////////////////////////////////////////
+/////// Hoisting and TDZ in Practice ////////
+/////////////////////////////////////////////
+
+// Variables
+// console.log(me);
+// console.log(job);
+// console.log(year);
+
+var me = 'Jonas';
+let job = 'teacher';
+const year = 1991;
+
+// Functions
+// console.log(addDecl(2, 3));
+// console.log(addExpr);
+// console.log(addExpr(2, 3));
+// console.log(addArrow(2, 3));
+
+function addDecl(a, b) {
+  return a + b;
+}
+
+var addExpr = function (a, b) {
+  return a + b;
+};
+
+var addArrow = (a, b) => a + b;
+
+// Example
+if (!numProducts) deleteShoppingCart();
+
+var numProducts = 10;
+
+function deleteShoppingCart() {
+  console.log('All products deleted!');
+}
+// variables declared with var will create a property on the global window object.
+var x = 1; //window 오브젝트 생성된다.
+let y = 2; // window 오브젝트에 생성되지 않는다. (do not create properties on the window object.)
+const z = 3;
+
+console.log(x === window.x);
+console.log(y === window.y);
+console.log(z === window.z);
