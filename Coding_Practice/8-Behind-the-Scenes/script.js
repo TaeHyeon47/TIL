@@ -132,39 +132,97 @@
 /////// The this Keyword in Practice ////////
 /////////////////////////////////////////////
 
-console.log(this);
+// console.log(this);
 
-const calcAge = function (birthYear) {
-  console.log(2037 - birthYear);
-  console.log(this); // undefined
-};
+// const calcAge = function (birthYear) {
+//   console.log(2037 - birthYear);
+//   console.log(this); // undefined
+// };
 
-calcAge(1991);
+// calcAge(1991);
 
-const calcAgeArrow = (birthYear) => {
-  console.log(2037 - birthYear);
-  console.log(this); // Window Object
-};
+// const calcAgeArrow = (birthYear) => {
+//   console.log(2037 - birthYear);
+//   console.log(this); // Window Object
+// };
 
-calcAgeArrow(1980);
+// calcAgeArrow(1980);
 
+// const jonas = {
+//   year: 1991,
+//   calcAge: function () {
+//     console.log(this);
+//     console.log(2037 - this.year);
+//   },
+// };
+
+// jonas.calcAge(); // jonas 객체가 calcAge 메소드를 호출하기 때문에 this 사용 시, 객체가 호출됨.
+
+// const matilda = {
+//   year: 1993,
+// };
+
+// // remember that a function is just a value
+// matilda.calcAge = jonas.calcAge; // method borrowing.
+// matilda.calcAge();
+
+// const f = jonas.calcAge;
+// f();
+
+//////////////////////////////////////////////////////
+/////// Regular Functions vs. Arrow Functions ////////
+//////////////////////////////////////////////////////
+
+// var firstName = 'Matilda';
+
+// this is not a code block. It is an object literal.
+// So it's just a way that we literally define objects. Okay?
 const jonas = {
+  firstName: 'Jonas',
   year: 1991,
   calcAge: function () {
     console.log(this);
     console.log(2037 - this.year);
+
+    // 해결책 1
+    // const self = this; // 이와 같이 사용하여, this를 상속하여 전달할 수 있다.
+    // const isMillenial = function () {
+    //   console.log(self);
+    //   console.log(self.year >= 1981 && self.year <= 1996);
+    //   // console.log(this.year >= 1981 && this.year <= 1996);
+
+    // 해결책 2
+    const isMillenial = () => {
+      console.log(this);
+      console.log(this.year >= 1981 && this.year <= 1996);
+    };
+    // It is a regular function call, even though it happens inside of a method.
+    // And the rule says that inside a regular function call, which this clearly is that this keyword must be undefined.
+    isMillenial();
+  },
+  greet: function () {
+    console.log(this);
+    // 글로벌 스코프(Windows)에 this.firstName를 나타냄
+    console.log(`Hey ${this.firstName}`);
   },
 };
+// you should never ever use an arrow function as a method.
+// 메소드에는 절대 에로우 펑션을 사용하지 않아야한다. 생각할 일이 적어진다.
 
-jonas.calcAge(); // jonas 객체가 calcAge 메소드를 호출하기 때문에 this 사용 시, 객체가 호출됨.
+jonas.greet();
+jonas.calcAge();
+// console.log(this.firstName);
 
-const matilda = {
-  year: 1993,
+// Arguments keyword
+const addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
 };
+addExpr(2, 5);
+addExpr(2, 5, 8, 12);
 
-// remember that a function is just a value
-matilda.calcAge = jonas.calcAge; // method borrowing.
-matilda.calcAge();
-
-const f = jonas.calcAge;
-f();
+var addArrow = (a, b) => {
+  console.log(arguments);
+  return a + b;
+};
+addArrow(2, 5, 8);
