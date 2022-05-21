@@ -36,94 +36,135 @@
 
 // scope is the place in our code where variables are declared.
 
-function calcAge(birthYear) {
-  const age = 2037 - birthYear;
+// function calcAge(birthYear) {
+//   const age = 2037 - birthYear;
 
-  function printAge() {
-    let output = `${firstName}, You are ${age}, born in ${birthYear}`;
-    console.log(output);
+//   function printAge() {
+//     let output = `${firstName}, You are ${age}, born in ${birthYear}`;
+//     console.log(output);
 
-    if (birthYear >= 1981 && birthYear <= 1996) {
-      var millenial = true;
-      // Creating New variablee with same name as outer scope's variable
-      const firstName = 'Steven'; // 함수에 파라미터 이름은 같아도 오류가 안나는 이유
-      // Reassigning outer scope's variable
-      output = 'NEW OUTPUT!';
-      const str = `Oh, and you're a millenial, ${firstName}`;
-      console.log(str);
+//     if (birthYear >= 1981 && birthYear <= 1996) {
+//       var millenial = true;
+//       // Creating New variablee with same name as outer scope's variable
+//       const firstName = 'Steven'; // 함수에 파라미터 이름은 같아도 오류가 안나는 이유
+//       // Reassigning outer scope's variable
+//       output = 'NEW OUTPUT!';
+//       const str = `Oh, and you're a millenial, ${firstName}`;
+//       console.log(str);
 
-      // functions are now in fact, block scoped.
-      // But remember that that is only true for strict mode.
-      function add(a, b) {
-        return a + b;
-      }
-    }
-    //  console.log(str);
-    console.log(millenial);
-    //  console.log(add(2, 3));
-    console.log(output);
-  }
-  printAge();
+//       // functions are now in fact, block scoped.
+//       // But remember that that is only true for strict mode.
+//       function add(a, b) {
+//         return a + b;
+//       }
+//     }
+//     //  console.log(str);
+//     console.log(millenial);
+//     //  console.log(add(2, 3));
+//     console.log(output);
+//   }
+//   printAge();
 
-  return age;
-}
+//   return age;
+// }
 
-const firstName = 'Jonas';
-calcAge(1991);
-// console.log(age);
-// printAge();
+// const firstName = 'Jonas';
+// calcAge(1991);
+// // console.log(age);
+// // printAge();
 
-///////////////////////////////////////////////////////////
-/////// Variable Environment: Hoisting and The TDZ ////////
-///////////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////
+// /////// Variable Environment: Hoisting and The TDZ ////////
+// ///////////////////////////////////////////////////////////
 
-// Function expressions and arrows are simply variables.
-// so they behave the exact same way as variables in regard to hoisting.
-// (let/const 또는 var에 따라서 호이스팅이 결정된다)
-// this is actually the reason why I told you earlier before we write them in the code. unlike function declarations.
+// // Function expressions and arrows are simply variables.
+// // so they behave the exact same way as variables in regard to hoisting.
+// // (let/const 또는 var에 따라서 호이스팅이 결정된다)
+// // this is actually the reason why I told you earlier before we write them in the code. unlike function declarations.
+
+// /////////////////////////////////////////////
+// /////// Hoisting and TDZ in Practice ////////
+// /////////////////////////////////////////////
+
+// // Variables
+// // console.log(me);
+// // console.log(job);
+// // console.log(year);
+
+// var me = 'Jonas';
+// let job = 'teacher';
+// const year = 1991;
+
+// // Functions
+// // console.log(addDecl(2, 3));
+// // console.log(addExpr);
+// // console.log(addExpr(2, 3));
+// // console.log(addArrow(2, 3));
+
+// function addDecl(a, b) {
+//   return a + b;
+// }
+
+// var addExpr = function (a, b) {
+//   return a + b;
+// };
+
+// var addArrow = (a, b) => a + b;
+
+// // Example
+// if (!numProducts) deleteShoppingCart();
+
+// var numProducts = 10;
+
+// function deleteShoppingCart() {
+//   console.log('All products deleted!');
+// }
+// // variables declared with var will create a property on the global window object.
+// var x = 1; //window 오브젝트 생성된다.
+// let y = 2; // window 오브젝트에 생성되지 않는다. (do not create properties on the window object.)
+// const z = 3;
+
+// console.log(x === window.x);
+// console.log(y === window.y);
+// console.log(z === window.z);
 
 /////////////////////////////////////////////
-/////// Hoisting and TDZ in Practice ////////
+/////// The this Keyword in Practice ////////
 /////////////////////////////////////////////
 
-// Variables
-// console.log(me);
-// console.log(job);
-// console.log(year);
+console.log(this);
 
-var me = 'Jonas';
-let job = 'teacher';
-const year = 1991;
-
-// Functions
-// console.log(addDecl(2, 3));
-// console.log(addExpr);
-// console.log(addExpr(2, 3));
-// console.log(addArrow(2, 3));
-
-function addDecl(a, b) {
-  return a + b;
-}
-
-var addExpr = function (a, b) {
-  return a + b;
+const calcAge = function (birthYear) {
+  console.log(2037 - birthYear);
+  console.log(this); // undefined
 };
 
-var addArrow = (a, b) => a + b;
+calcAge(1991);
 
-// Example
-if (!numProducts) deleteShoppingCart();
+const calcAgeArrow = (birthYear) => {
+  console.log(2037 - birthYear);
+  console.log(this); // Window Object
+};
 
-var numProducts = 10;
+calcAgeArrow(1980);
 
-function deleteShoppingCart() {
-  console.log('All products deleted!');
-}
-// variables declared with var will create a property on the global window object.
-var x = 1; //window 오브젝트 생성된다.
-let y = 2; // window 오브젝트에 생성되지 않는다. (do not create properties on the window object.)
-const z = 3;
+const jonas = {
+  year: 1991,
+  calcAge: function () {
+    console.log(this);
+    console.log(2037 - this.year);
+  },
+};
 
-console.log(x === window.x);
-console.log(y === window.y);
-console.log(z === window.z);
+jonas.calcAge(); // jonas 객체가 calcAge 메소드를 호출하기 때문에 this 사용 시, 객체가 호출됨.
+
+const matilda = {
+  year: 1993,
+};
+
+// remember that a function is just a value
+matilda.calcAge = jonas.calcAge; // method borrowing.
+matilda.calcAge();
+
+const f = jonas.calcAge;
+f();
