@@ -177,52 +177,81 @@
 
 // this is not a code block. It is an object literal.
 // So it's just a way that we literally define objects. Okay?
-const jonas = {
-  firstName: 'Jonas',
-  year: 1991,
-  calcAge: function () {
-    console.log(this);
-    console.log(2037 - this.year);
+// const jonas = {
+//   firstName: 'Jonas',
+//   year: 1991,
+//   calcAge: function () {
+//     console.log(this);
+//     console.log(2037 - this.year);
 
-    // 해결책 1
-    // const self = this; // 이와 같이 사용하여, this를 상속하여 전달할 수 있다.
-    // const isMillenial = function () {
-    //   console.log(self);
-    //   console.log(self.year >= 1981 && self.year <= 1996);
-    //   // console.log(this.year >= 1981 && this.year <= 1996);
+//     // 해결책 1
+//     // const self = this; // 이와 같이 사용하여, this를 상속하여 전달할 수 있다.
+//     // const isMillenial = function () {
+//     //   console.log(self);
+//     //   console.log(self.year >= 1981 && self.year <= 1996);
+//     //   // console.log(this.year >= 1981 && this.year <= 1996);
 
-    // 해결책 2
-    const isMillenial = () => {
-      console.log(this);
-      console.log(this.year >= 1981 && this.year <= 1996);
-    };
-    // It is a regular function call, even though it happens inside of a method.
-    // And the rule says that inside a regular function call, which this clearly is that this keyword must be undefined.
-    isMillenial();
-  },
-  greet: function () {
-    console.log(this);
-    // 글로벌 스코프(Windows)에 this.firstName를 나타냄
-    console.log(`Hey ${this.firstName}`);
-  },
+//     // 해결책 2
+//     const isMillenial = () => {
+//       console.log(this);
+//       console.log(this.year >= 1981 && this.year <= 1996);
+//     };
+//     // It is a regular function call, even though it happens inside of a method.
+//     // And the rule says that inside a regular function call, which this clearly is that this keyword must be undefined.
+//     isMillenial();
+//   },
+//   greet: function () {
+//     console.log(this);
+//     // 글로벌 스코프(Windows)에 this.firstName를 나타냄
+//     console.log(`Hey ${this.firstName}`);
+//   },
+// };
+// // you should never ever use an arrow function as a method.
+// // 메소드에는 절대 에로우 펑션을 사용하지 않아야한다. 생각할 일이 적어진다.
+
+// jonas.greet();
+// jonas.calcAge();
+// // console.log(this.firstName);
+
+// // Arguments keyword
+// const addExpr = function (a, b) {
+//   console.log(arguments);
+//   return a + b;
+// };
+// addExpr(2, 5);
+// addExpr(2, 5, 8, 12);
+
+// var addArrow = (a, b) => {
+//   console.log(arguments);
+//   return a + b;
+// };
+// addArrow(2, 5, 8);
+
+///////////////////////////////////////////////////////////////////////
+/////// Primitives vs. Objects (Primitive vs. Reference Types) ////////
+///////////////////////////////////////////////////////////////////////
+
+// identifier actually points to the address and not to the value itself.
+// the value at a certain memory address is immutable.
+
+// const are immutable. In fact, that is only true for primitive values,
+// but not for reference values.
+
+let age = 30;
+let oldAge = age;
+age = 31;
+console.log(age); // 31
+console.log(oldAge); // 30
+
+////////////////////////////
+// 객체에서 생각한것과 다르게 변경됨.. 주의...
+
+const me = {
+  name: 'Jonas',
+  age: 30,
 };
-// you should never ever use an arrow function as a method.
-// 메소드에는 절대 에로우 펑션을 사용하지 않아야한다. 생각할 일이 적어진다.
 
-jonas.greet();
-jonas.calcAge();
-// console.log(this.firstName);
-
-// Arguments keyword
-const addExpr = function (a, b) {
-  console.log(arguments);
-  return a + b;
-};
-addExpr(2, 5);
-addExpr(2, 5, 8, 12);
-
-var addArrow = (a, b) => {
-  console.log(arguments);
-  return a + b;
-};
-addArrow(2, 5, 8);
+const friend = me;
+friend.age = 27; // me 객체의 age까지 변경됨.
+console.log('Friend:', friend); // friend.age : 27
+console.log('Me', me); // friend.age : 27
