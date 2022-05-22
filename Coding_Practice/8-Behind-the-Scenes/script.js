@@ -255,3 +255,61 @@ const friend = me;
 friend.age = 27; // me 객체의 age까지 변경됨.
 console.log('Friend:', friend); // friend.age : 27
 console.log('Me', me); // friend.age : 27
+
+///////////////////////////////////////////////////
+/////// Primitives vs. Objects in Practice ////////
+///////////////////////////////////////////////////
+
+// Primitive types
+let lastName = 'Williams';
+let oldLastName = lastName;
+lastName = 'Davis';
+console.log(lastName, oldLastName);
+
+// Reference types
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
+
+const marriedJessica = jessica;
+
+marriedJessica.lastName = 'Davis';
+console.log('Before marriage: ', jessica);
+console.log('After marriage: ', marriedJessica);
+
+// 1. 새로운 객체는 전혀 다른 메모리에 저장된다.
+// 2. 새로운 객체의 HEAP의 address는 기존과 달라진다.
+// 3. 하지만 const로 선언되어 Call Stack에 저장된 marriedJessica의 Value는 변경이 불가하다.
+// (REFERENCE TYPES은 CALL STACK의 Value 값으로 HEAP의 Address를 참조한다.)
+// 4. const로 선언하여 Value값으로 변경이 불가능한 marriedJessica는 사용이 불가하다.
+// 5. 만약 marriedJessica를 let으로 선언했다면 사용가능하다.
+// marriedJessica = {};
+
+// Copying Objects (객체를 복사하는 경우 설명)
+const jessica2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Alice', 'Bob'],
+};
+
+// Object.assign only works on the first level
+// Or in other words, if we have an object inside the object
+// then this inner object will actually still be the same.
+// So, it will still point to the same place in memory.
+// And that's why we say that this object.assign
+// only creates a shallow copy and not a deep clone which is what we would like to have.
+// So, again, a shallow copy will only copy the properties
+// in the first level while a deep clone would copy everything.
+const jessicaCopy = Object.assign({}, jessica2);
+jessicaCopy.lastName = 'Davis';
+
+// Object.assign을 사용하면 lastName 프로퍼티는 보존이 되지만,
+// 아래와 같이 배열은 같은 메모리를 지정하면서 보호가 되지 않는다.
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('John');
+
+console.log('Before marriage: ', jessica2);
+console.log('After marriage: ', jessicaCopy);
