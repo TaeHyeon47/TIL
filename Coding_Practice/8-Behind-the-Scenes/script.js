@@ -284,7 +284,7 @@ console.log('After marriage: ', marriedJessica);
 // 3. 하지만 const로 선언되어 Call Stack에 저장된 marriedJessica의 Value는 변경이 불가하다.
 // (REFERENCE TYPES은 CALL STACK의 Value 값으로 HEAP의 Address를 참조한다.)
 // 4. const로 선언하여 Value값으로 변경이 불가능한 marriedJessica는 사용이 불가하다.
-// 5. 만약 marriedJessica를 let으로 선언했다면 사용가능하다.
+// 5. 만약 marriedJessica를 let으로 선언했다면 사용가능하다..
 // marriedJessica = {};
 
 // Copying Objects (객체를 복사하는 경우 설명)
@@ -312,4 +312,7 @@ jessicaCopy.family.push('Mary');
 jessicaCopy.family.push('John');
 
 console.log('Before marriage: ', jessica2);
+console.log('After marriage: ', jessicaCopy);
+
+//// Test
 console.log('After marriage: ', jessicaCopy);
