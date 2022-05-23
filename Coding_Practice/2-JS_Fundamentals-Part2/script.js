@@ -123,8 +123,8 @@
 // const age2 = calcAge2(1991); // in Function expression not work
 
 /*
+// calcAge2 varible will then hold this function value basically
 const calcAge2 = function (birthYeah) {
-  // calcAge2 varible will then hold this function value basically
   return 2037 - birthYeah;
 };
 const age2 = calcAge2(1991);
@@ -156,8 +156,7 @@ console.log(age1, age2);
 //because this then forces me into a nice structure
 //where I have to define all the functions first
 //at the top of the code and only then I can call them.
-//So this makes the code a little bit nicer
-//and more structured.
+//So this makes the code a little bit nicer and more structured.
 //I also like to have everything stored in variables,
 
 /////////////////////////////
@@ -257,7 +256,7 @@ console.log(age1, age2);
 // const friends = ["Michael", "Steven", "Peter"];
 // console.log(friends);
 
-// // const years = new Array(1991, 1984, 2008, 2020); // here we used a different way of creating the Array, which was using this Array function.
+// const years = new Array(1991, 1984, 2008, 2020); // here we used a different way of creating the Array, which was using this Array function.
 
 // console.log(friends[0]);
 
@@ -328,6 +327,7 @@ console.log(age1, age2);
 // console.log(friends2); // ['Michael', 'Steven', 'Jay', 'Jay']
 // console.log(newLength); // 4
 
+// 배열 메소드의 Push를 사용하여 데이터를 넣을 때, 들어간 데이터의 수를 반환 값으로 뱉는다는걸 잊지 말자! (다른 추가 배열 메소드도 마찬가지)
 // Now since push is a function here, it can also return something. we already know that we can pass arguments
 // Into functions and we did that here with Jay, then the function can do some work and in this case,
 // The push function does return a value and the value that it returns is the length of the new array.
@@ -341,13 +341,14 @@ console.log(age1, age2);
 // console.log(friends2);
 // console.log(newfr);
 
+// 추가 메소드와 같이 pop과 같이 제거하는 메소드는 제거한 메소드를 저장한다.
 // Remove elements
-// friends2.pop(); // Last
+// friends2.pop(); // Last 요소 제거
 // const popped = friends2.pop();
 // console.log(popped); // Peter
 // console.log(friends2); // ['John', 'Michael', 'Steven']
 
-// friends2.shift(); //First
+// friends2.shift(); //First 요소 제거
 // console.log(friends2); // ['Michael', 'Steven']
 
 // console.log(friends2.indexOf("Steven")); // 1
