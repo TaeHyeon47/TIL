@@ -97,6 +97,10 @@ BMI (28.3) is higher than John's (23.9)!"
 //   console.log(`John's BMI (${JohnBMI.toFixed(1)}) is higher than Mark's!`);
 // }
 
+//////////////////////////////////////////
+///// type conversion and coercion ///////
+//////////////////////////////////////////
+
 // // type conversion
 // const inputYear = "1991";
 // console.log(Number(inputYear), inputYear); // 1991 '1991'
@@ -117,12 +121,16 @@ BMI (28.3) is higher than John's (23.9)!"
 // n = n - 1; // 10
 // console.log(n); // 10
 
+/////////////////////////////////////
+///// Truthy and Falsy Values ///////
+/////////////////////////////////////
+
 // So, falsy values are values that are not exactly false,
 // but will become false when we try to convert them into a boolean.
 // 5 falsy values: 0, '', undefined, null, NaN
 
 // Everything else are our so-called truthy values.
-//So, values that will be converted to true, for example,
+// So, values that will be converted to true, for example,
 
 // console.log(Boolean(0));
 // console.log(Boolean(undefined));
@@ -264,8 +272,8 @@ BMI (28.3) is higher than John's (23.9)!"
 
 const age = 23;
 age >= 18
-  ? console.log("I like to drink wine")
-  : console.log("I like to drink water");
+  ? console.log('I like to drink wine')
+  : console.log('I like to drink water');
 
 // Remember that an operator always produces a value.
 // So in other words an operator is an expression, right.
@@ -273,17 +281,17 @@ age >= 18
 // So with this we can make the ternary operator really useful
 // to basically conditionally declare variables.
 
-const drink = age >= 18 ? "wine" : "water";
+const drink = age >= 18 ? 'wine' : 'water';
 console.log(drink);
 
 let drink2;
 if (age >= 18) {
-  drink2 = "wine";
+  drink2 = 'wine';
 } else {
-  drink2 = "water";
+  drink2 = 'water';
 }
 console.log(drink2);
 
 // The ternary operator is really an expression, we can now use it for in a template literal.
 
-console.log(`I like to drink ${age >= 18 ? "wine" : "water"}`);
+console.log(`I like to drink ${age >= 18 ? 'wine' : 'water'}`);
