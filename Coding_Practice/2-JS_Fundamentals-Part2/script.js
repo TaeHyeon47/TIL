@@ -418,6 +418,7 @@ console.log(age1, age2);
 // // so we don't have to explicitly write the string here,
 // // but instead we can compute it from some operation
 
+// Bracket (박스) 표기법의 경우 아래와 같이 사용할 수 있다. 꼭 기억하자.
 // const nameKey = "Name";
 // console.log(jonas["first" + nameKey]); // we could put any expression here,
 // console.log(jonas["last" + nameKey]);
@@ -616,5 +617,7 @@ while (dice !== 6) {
   if (dice === 6) console.log('Loop is about to end...');
 }
 
+// TODO:
+// FIXME:
 // TODO:
 // FIXME:
