@@ -275,8 +275,8 @@ age >= 18
   ? console.log('I like to drink wine')
   : console.log('I like to drink water');
 
-// Remember that an operator always produces a value.
-// So in other words an operator is an expression, right.
+//? Remember that an operator always produces a value.
+//? So in other words an operator is an expression, right.
 // If we have a value we can then assign that value to a variable.
 // So with this we can make the ternary operator really useful
 // to basically conditionally declare variables.
