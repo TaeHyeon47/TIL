@@ -101,11 +101,11 @@
 ///////////////////////////////////////////////////
 
 // Function Declarations(선언형 함수)
-// because we simply use the function keyword
+// We simply use the function keyword
 // to declare a function a bit like we declare a variable.
 // So let's now write another function declaration.
 
-//Function declaration
+// Function declaration
 // const age1 = calcAge1(1991); // Function declaration, we can call them in a code before they are defined.
 
 // function calcAge1(birthYear) {
@@ -135,22 +135,16 @@ console.log(age1, age2);
 //We call it in the same way we capture the return value in the same way and then of course the result is also the same
 //because the function body is the same.
 
-//But it's very important to know that we have these two type of functions in JavaScript.
-//Because in some places we will actually need to write them like this,
-//as you will see as we go through the course. So again, this part here that I just highlighted
-//this function here is in fact an expression
-//and remember that expressions produce values.
+//? But it's very important to know that we have these two type of functions in JavaScript.
 
-// functions are actually just values. So just as a number or a string or a boolean value.
-// So a function is not a type, okay? but it's also a value.
-// It will become very important later
+//? functions are actually just values. So just as a number or a string or a boolean value.
+//? So a function is not a type, okay? but it's also a value.
+//? It will become very important later
 
+//? function declaration의 특징
 // the main practical difference is that we can actually call function declarations
 // before they are defined in the code.
-
 //For now just keep in mind that you can call a function declaration before you define it
-//even though that might not be such a good idea in many cases
-//but you can do it if necessary.
 
 //Personally, I prefer to use function expressions
 //because this then forces me into a nice structure
@@ -172,7 +166,7 @@ console.log(age1, age2);
 //   return 2037 - birthYeah;
 // };
 
-// Arrow expression
+//? Arrow expression
 // A lot easier and faster to write.
 // The first reason for that is that we don't need the curly braces,
 // And second is that the return actually happens implicitly. without us having to explicitly write the return keyword.
@@ -256,7 +250,7 @@ console.log(age1, age2);
 // const friends = ["Michael", "Steven", "Peter"];
 // console.log(friends);
 
-// const years = new Array(1991, 1984, 2008, 2020); // here we used a different way of creating the Array, which was using this Array function.
+// const years = new Array(1991, 1984, 2008, 2020); //? here we used a different way of creating the Array, which was using this Array function.
 
 // console.log(friends[0]);
 
@@ -273,9 +267,9 @@ console.log(age1, age2);
 // // Anyway what matters, is that this is gonna be the exact amount of elements that is in the Array. And it's not zero based.
 // console.log(friends.length); // this dot length is something called a property which we're gonna talk about a little bit later in the section when we talk about objects.
 // // This automatic retrieval of the last element works just fine.
-// console.log(friends[friends.length - 1]); // friends.length is not zero based. And so we always need to subtract one from this number here.
+// console.log(friends[friends.length - 1]); //? friends.length is not zero based. And so we always need to subtract one from this number here.
 // 'friends.length - 1' is expression. and remember that an expression is something that produces a value.
-// And 'friends.length - 1' is gonna be calculated first. So it will compute friends.length which is three minus one is two, and then it will get friends at position two.
+//? And 'friends.length - 1' is gonna be calculated first. So it will compute friends.length which is three minus one is two, and then it will get friends at position two.
 
 // const firstName = "Jonas";
 // const jonas = [firstName, "Schemdtmann", 2037 - 1991, "teacher", friends]; // we could even put other Arrays inside of an Array.
@@ -323,15 +317,15 @@ console.log(age1, age2);
 
 // const friends2 = ["Michael", "Steven", "Peter"];
 //Add elements
-// const newLength = friends2.push("Jay"); // push is a method which technically is a function. and we call that function directly on the friends array.
+// const newLength = friends2.push("Jay"); //? push is a method which technically is a function. and we call that function directly on the friends array.
 // console.log(friends2); // ['Michael', 'Steven', 'Jay', 'Jay']
 // console.log(newLength); // 4
 
 // 배열 메소드의 Push를 사용하여 데이터를 넣을 때, 들어간 데이터의 수를 반환 값으로 뱉는다는걸 잊지 말자! (다른 추가 배열 메소드도 마찬가지)
 // Now since push is a function here, it can also return something. we already know that we can pass arguments
 // Into functions and we did that here with Jay, then the function can do some work and in this case,
-// The push function does return a value and the value that it returns is the length of the new array.
-// So if we want to capture that data or that value, we can create a new variable for that.
+//? The push function does return a value and the value that it returns is the length of the new array.
+//? So if we want to capture that data or that value, we can create a new variable for that.
 
 // console.log(newLength); // 4
 // So we just push an element and call it a day, Because usually we don't immediately need the length of the new array.
@@ -382,7 +376,7 @@ console.log(age1, age2);
 // The value can be of any type that we want here.
 // Now each of these keys is also called a property.
 // this object, which is called Jonas has five properties.
-// the object literal Syntax
+//? the object literal Syntax
 // const jonas = {
 //   firstName: "Jonas",
 //   lastName: "Schmedtmann",
@@ -394,8 +388,8 @@ console.log(age1, age2);
 // the big difference between objects and arrays,
 // is that in objects, the order of these values
 // does not matter at all when we want to retrieve them.
-// object(객체)의 경우, 배열과 달리 순서를 신경쓸 필요가 없다!
-// 배열의 경우 순서를 신경써야 한다.
+//? object(객체)의 경우, 배열과 달리 순서를 신경쓸 필요가 없다!
+//? 배열의 경우 순서를 신경써야 한다.
 
 /////////////////////////////////////
 ///// Dot vs Bracket Notation ///////
@@ -460,8 +454,8 @@ console.log(age1, age2);
 ///// Object Methods ///////
 ////////////////////////////
 
-// expresstion형 함수만 객체 프로퍼티로 사용할 수 있다.
-// 선언형 함수는 객체 프로퍼티로 사용할 수 없다.
+//? expresstion형 함수만 객체 프로퍼티로 사용할 수 있다.
+//? 선언형 함수는 객체 프로퍼티로 사용할 수 없다.
 
 // JavaScript gives us access to a special variable called this.
 // And so what we can do now is in this calcAge function,
@@ -476,16 +470,7 @@ console.log(age1, age2);
 //   friends: ["Michael", "Peter", "Steven"],
 //   hasDriversLicense: true,
 
-//   // calcAge: function (birthYear) {
-//   //   return 2037 - birthYear;
-//   // },
-
-//   // this key word or the this variable is basically equal to the object
-//   // on which the method is called, it is equal to the object calling the method.
-//   // we create a new property on the current object.
-
 //   calcAge: function () {
-//     // console.log(this);
 //     this.age = 2037 - this.birthYear;
 //     return this.age;
 //   },
