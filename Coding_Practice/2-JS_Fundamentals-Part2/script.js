@@ -606,3 +606,9 @@ while (dice !== 6) {
 // FIXME:
 // TODO:
 // FIXME:
+
+aa();
+
+function aa() {
+  console.log('sex');
+}
