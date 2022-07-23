@@ -126,3 +126,5 @@ console.log([...arr, ...arr2]);
 // JOIN
 console.log('JOIN');
 console.log(letters.join(' - ')); // string 값으로 ' - ' 값이 입력되어 나타난다.
+
+console.log(arr[0]);
