@@ -39,6 +39,7 @@ createBooking('LH123', undefined, 1000);
 ///////////////////////////////////////////////////////////////
 /////// How Passing Arguments Works: Value vs. Reference //////
 ///////////////////////////////////////////////////////////////
+/*
 
 const flight = 'LH234';
 const jonas = {
@@ -80,3 +81,27 @@ checkIn(flight, jonas);
 // There are two terms that are used all the time when dealing with functions,
 // which is passing by value, and passing by reference,
 // and many experienced programmers that are new to JavaScript have some confusion between these terms
+
+*/
+/////////////////////////////////////////////////////
+/////// Functions Accepting Callback Functions //////
+/////////////////////////////////////////////////////
+
+const oneWord = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
+};
+
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
+};
+
+// Higher-order function
+const transformer = function (str, fn) {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn}`);
+
+  console.log(`Transformed by: ${fn.name}`);
+};
+
+transformer('JavaScript is the best!', upperFirstWord);
