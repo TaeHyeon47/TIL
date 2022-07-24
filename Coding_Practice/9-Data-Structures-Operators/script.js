@@ -32,15 +32,46 @@ const restaurant = {
   },
 };
 
+//? Destructuring Object
+// Destructure objects we use the curly braces. Because this is also how we create objects, right?
+// Then all we have to do is to provide the variable names that exactly match the property names that we want to retrieve from the object.
+
+const { name, openingHours, categories } = restaurant; // API를 불러올 때 자주 사용
+console.log(name, openingHours, categories);
+
+// 이름 변경
+const {
+  name: restaurantName,
+  openingHours: hours,
+  categories: tags,
+} = restaurant;
+console.log(restaurantName, hours, tags);
+
+// Default values
+const { menu = [], starterMenu: starters = [] } = restaurant;
+console.log(menu, starters);
+
+// Mutating variables
+let a = 111;
+let b = 999;
+const obj = { a: 23, b: 7, c: 14 };
+
+// 자바스크립트는 {}를 코드블럭으로 인식한다. 코드 블럭에는 값을 넣을 수 없다. ()로 감싸주어야만 사용할 수 있다.
+// { a, b } = obj;
+({ a, b } = obj);
+console.log(a, b);
+
+/*
+ 
+//? Destructuring Arrays
+// Destructuring is to break a complex data structure down into a smaller data structure like a variable.
+// Destructuring is an ES6 feature it's basically a way of unpacking values from an array or an object into separate variables.
+
 const arr = [2, 3, 4];
 // 각각 변수를 선언
 const a = arr[0];
 const b = arr[1];
 const c = arr[2];
-
-//? Destructuring Arrays
-// Destructuring is to break a complex data structure down into a smaller data structure like a variable.
-// Destructuring is an ES6 feature it's basically a way of unpacking values from an array or an object into separate variables.
 
 // 배열을 활용해 한번에 변수를 선언
 // '='의 왼편에 있는 []은 array처럼 보이지만 array가 아니다.
@@ -77,3 +108,5 @@ console.log(i, j, k);
 // Default values
 const [p = 1, q = 1, r = 1] = [8, 9]; // API에 자주 사용되는 문법
 console.log(p, q, r);
+
+*/
