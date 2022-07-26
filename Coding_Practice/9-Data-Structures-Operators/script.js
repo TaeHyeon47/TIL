@@ -52,6 +52,46 @@ const restaurant = {
   },
 };
 
+//? Short Circuiting (&& and ||)
+// Use ANY data type, return ANY data type, short-circuiting
+// 1. the OR operator will return the first truthy value of all the operands.
+// or simply the last value if all of them are falsy.
+// 2. the AND operator will return the first falsy value
+// or the last value if all of them are truthy.
+
+// we can use the OR operator to set default values.
+// we can use the AND operator to execute code in the second operand if the first one is true.
+
+console.log('----- OR(||) -----');
+
+console.log(3 || 'Jonas'); // 3
+console.log('' || 'Jonas'); // Jonas
+console.log(true || 0); // true
+console.log(undefined || 0); // null
+
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+restaurant.numGuests = 0;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log('----- AND(&&) -----');
+console.log(0 && 'Jonas'); // 0
+console.log(7 && 'Jonas'); // Jonas
+console.log('Hello' && 23 && null && 'jonas'); // null
+
+// Practical example
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushromms', 'spinach');
+}
+// many times we can use the AND operator to actually avoid an if statement like this one.
+restaurant.orderPizza && restaurant.orderPizza('mushromms', 'spinach');
+
+/*
+
 //? Rest Pattern and Parameters
 // The rest pattern looks exactly like the spread operator So it has the same syntax with the three dots
 // but it actually does the opposite of the spread operator.
@@ -94,6 +134,8 @@ add(...x); // Spread operator로 풀어주고 넣어준다.
 
 restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
 restaurant.orderPizza('mushrooms');
+
+*/
 
 /*
 
