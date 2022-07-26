@@ -41,7 +41,80 @@ const restaurant = {
       close: 24,
     },
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your declicius pasta with ${ing1}, ${ing2}, ${ing3}`);
+  },
 };
+
+//? The Spread Operator (...)
+// what the spread operator does is to basically take all the values out of this 'arr' array.
+
+const arr = [7, 8, 9];
+const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+console.log(badNewArr);
+
+const newArr = [1, 2, ...arr]; // 만약 ...을 사용하지 않는다면 [] 형태가 그대로 들어간다.
+console.log(newArr);
+
+// 아래의 두개의 결과 값은 동일
+console.log(...newArr);
+console.log(1, 2, 7, 8, 9);
+
+const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+console.log(newMenu);
+
+// Destructuring과 Spread operator의 차이점.
+// Array(배열)의 요소를 out of 한다는점에서 유사하나
+// Spread operator는 모든 배열의 요소를 가져오고 variables를 만들지 않는다.
+
+// Copy array
+const mainMenuCopy = [...restaurant.mainMenu];
+console.log(mainMenuCopy);
+
+// Join 2 arrays
+const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(menu);
+
+//? Spread Operator는 Iterable에 모두 사용 가능
+//? Iterable의 정의와 종류
+// Most of the built-in data structures in JavaScript are now iterables, but except objects.
+// arrays, strings, maps, sets but not objects.
+
+// strings 예시
+const str = 'Jonas';
+const letters = [...str, '', 'S.'];
+console.log(letters);
+console.log(...str); // Jonas가 각각의 요소로 출력됨
+console.log('j', '0');
+// 템플릿 리터럴은 multiple values seprated by a comma를 출력할 수 없다.
+// console.log(`${...str} Schmedtmann`);
+
+//* 중요개념
+//? multiple values separated by a comma are usually only
+//? expected when we pass arguments into a function or when we build a new array.
+
+// const ingredients = [
+//   prompt("Let's make pasta! Ingredient 1?"),
+//   prompt('Ingredient 2?'),
+//   prompt('Ingredient 3?'),
+// ];
+// console.log(ingredients);
+
+// // 동일한 결과값이 나온다.
+// restaurant.orderPasta(...ingredients[0], ingredients[1], ingredients[2]);
+// restaurant.orderPasta(...ingredients);
+
+// Objects
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
+console.log(newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'Ristorante Roma';
+console.log(restaurantCopy.name);
+console.log(restaurant.name);
+
+/*
 
 restaurant.orderDelivery({
   time: '22:30',
@@ -89,6 +162,9 @@ const {
   fri: { open: o, close: c },
 } = openingHours;
 console.log(o, c);
+
+
+*/
 
 /*
  
