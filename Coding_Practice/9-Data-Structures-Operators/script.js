@@ -67,11 +67,11 @@ console.log('----- OR(||) -----');
 console.log(3 || 'Jonas'); // 3
 console.log('' || 'Jonas'); // Jonas
 console.log(true || 0); // true
-console.log(undefined || 0); // null
+console.log(null || 0); // null
 
 console.log(undefined || 0 || '' || 'Hello' || 23 || null);
 
-restaurant.numGuests = 0;
+restaurant.numGuests = 3;
 const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
 console.log(guests1);
 
@@ -89,8 +89,6 @@ if (restaurant.orderPizza) {
 }
 // many times we can use the AND operator to actually avoid an if statement like this one.
 restaurant.orderPizza && restaurant.orderPizza('mushromms', 'spinach');
-
-/*
 
 //? Rest Pattern and Parameters
 // The rest pattern looks exactly like the spread operator So it has the same syntax with the three dots
@@ -135,18 +133,16 @@ add(...x); // Spread operator로 풀어주고 넣어준다.
 restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
 restaurant.orderPizza('mushrooms');
 
-*/
-
 /*
 
 //? The Spread Operator (...)
-// what the spread operator does is to basically take all the values out of this 'arr' array.
 
+// what the spread operator does is to basically take all the values out of this 'arr' array.
 const arr = [7, 8, 9];
 const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
 console.log(badNewArr);
 
-const newArr = [1, 2, ...arr]; // 만약 ...을 사용하지 않는다면 [] 형태가 그대로 들어간다.
+const newArr = [1, 2, ...arr];
 console.log(newArr);
 
 // 아래의 두개의 결과 값은 동일
@@ -210,6 +206,10 @@ console.log(restaurant.name);
 
 /*
 
+//? Destructuring Object
+// Destructure objects we use the curly braces. Because this is also how we create objects, right?
+// Then all we have to do is to provide the variable names that exactly match the property names that we want to retrieve from the object.
+
 restaurant.orderDelivery({
   time: '22:30',
   address: 'Via del Sole, 21',
@@ -221,10 +221,6 @@ restaurant.orderDelivery({
   address: 'Via del Sole, 21',
   starterIndex: 1,
 });
-
-//? Destructuring Object
-// Destructure objects we use the curly braces. Because this is also how we create objects, right?
-// Then all we have to do is to provide the variable names that exactly match the property names that we want to retrieve from the object.
 
 const { name, openingHours, categories } = restaurant; // API를 불러올 때 자주 사용
 console.log(name, openingHours, categories);
@@ -257,11 +253,10 @@ const {
 } = openingHours;
 console.log(o, c);
 
-
 */
 
 /*
- 
+
 //? Destructuring Arrays
 // Destructuring is to break a complex data structure down into a smaller data structure like a variable.
 // Destructuring is an ES6 feature it's basically a way of unpacking values from an array or an object into separate variables.
@@ -271,15 +266,15 @@ const arr = [2, 3, 4];
 const a = arr[0];
 const b = arr[1];
 const c = arr[2];
+console.log(a, b, c);
 
 // 배열을 활용해 한번에 변수를 선언
-// '='의 왼편에 있는 []은 array처럼 보이지만 array가 아니다.
-// 이것은 destructring을 해준다.
+// '='의 왼편에 있는 []은 array처럼 보이지만 array가 아니다. 이것은 destructring문법이다.
 const [x, y, z] = arr;
 console.log(x, y, z); // 2 3 4
 
-// const [first, second] = restaurant.categories; // restaurant.categories의 1번, 2번 요소를 가져온다.
-let [main, , secondary] = restaurant.categories; // restaurant.categories의 1번, 3번 요소를 가져온다.
+// const [first, second] = restaurant.categories; // 1번, 2번 요소를 가져온다.
+let [main, , secondary] = restaurant.categories; // 1번, 3번 요소를 가져온다.
 console.log(main, secondary);
 
 //? 값의 위치 바꾸기
@@ -301,7 +296,8 @@ console.log(starter, mainCourse);
 const nested = [2, 4, [5, 6]];
 // const [i, , j] = nested;
 // console.log(i, j);
-const [i, , [j, k]] = nested;
+const [i, , [j, k]] = nested; // 2 5 6
+// const [i, , j, k] = nested; // 2 [5, 6]
 console.log(i, j, k);
 
 // Default values
