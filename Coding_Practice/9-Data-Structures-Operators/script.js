@@ -52,6 +52,24 @@ const restaurant = {
   },
 };
 
+//?The Nullish Coalescing Operator (??)
+// It's an operator that was introduced in ES2020.
+// works with the idea or with the concept of nullish values instead of falsy values.
+// it is as if the zero and the empty string were not falsy values and were instead truthy values as well.
+
+//* Nullish : null and undefined (NOT 0 or '')
+// only if this was null or undefined, only then the second operand here would be executed and returned.
+// 첫번째 값이 null, undefined인 경우에만 두번째 값이 리턴된다.
+
+// restaurant.numGuests = 0;
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+/*
+
 //? Short Circuiting (&& and ||)
 // Use ANY data type, return ANY data type, short-circuiting
 // 1. the OR operator will return the first truthy value of all the operands.
@@ -77,7 +95,7 @@ console.log(guests1);
 
 const guests2 = restaurant.numGuests || 10;
 console.log(guests2);
-
+ 
 console.log('----- AND(&&) -----');
 console.log(0 && 'Jonas'); // 0
 console.log(7 && 'Jonas'); // Jonas
@@ -89,6 +107,10 @@ if (restaurant.orderPizza) {
 }
 // many times we can use the AND operator to actually avoid an if statement like this one.
 restaurant.orderPizza && restaurant.orderPizza('mushromms', 'spinach');
+
+*/
+
+/*
 
 //? Rest Pattern and Parameters
 // The rest pattern looks exactly like the spread operator So it has the same syntax with the three dots
@@ -132,6 +154,8 @@ add(...x); // Spread operator로 풀어주고 넣어준다.
 
 restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
 restaurant.orderPizza('mushrooms');
+
+*/
 
 /*
 
