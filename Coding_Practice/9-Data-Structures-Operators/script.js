@@ -175,12 +175,52 @@ const restaurant = {
   },
 };
 
+//? Optional Chaining (?.)
+// if a certain property does not exist, then undefined is returned immediately.
+// And so that will then avoid that kind of error that we saw earlier.
+
+if (restaurant.openingHours && restaurant.openingHours.mon) {
+  console.log(restaurant.openingHours.mon.open);
+}
+
+// restaurant.openingHours.mon && console.log(restaurant.openingHours.mon.open);
+
+// With Optional Chaining (?.)
+// only if the property that is before this question mark here.
+// So only if Monday exists, then this open property will be read from there.
+// But if not, then immediately undefined will be returned.
+// console.log(restaurant.openingHours.mon.open); // 에러발생
+console.log(restaurant.openingHours?.mon?.open);
+
+// Example
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of days) {
+  // We cannot do this. Because this is not an actual property name of the object.
+  // restaurant.openingHours.day;
+
+  // if we want to use a variable name as the property name,
+  // const open = restaurant.openingHours[day]?.open || 'closed';
+  const open = restaurant.openingHours[day]?.open ?? 'closed'; // 0이 falsey value로 인식되어 ??을 사용
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+// Methods
+console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+
+// Arrays
+const users = [{ name: 'Jonas', email: 'hello@jonas.io' }];
+// const users = [];
+console.log(users[0]?.name ?? 'User array empty');
+
+if (users.length > 0) console.log(users[0].name);
+else console.log('user array empty');
+
 //? Enhanced Object Literals
 // 1. openingHours 처럼 밖의 property를 추가
 // 2. order처럼 function을 요약해서 사용 (function expression)
 // 3. we can now actually compute property names instead of having to write them out manually and literally. ex) weekdaysss
 
-console.log(restaurant);
 /*
 
 //? Looping Arrays: The for-of Loop
