@@ -1,0 +1,16 @@
+{
+  "folders": [
+	{
+		"path": "../../../Personal_Project/cooking-recipe"
+	},
+	{
+		"path": "../../../Portfolio"
+	},
+	{
+		"path": "../.."
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "TIL-Javascript"
+  }
+}

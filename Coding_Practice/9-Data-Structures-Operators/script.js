@@ -4,7 +4,7 @@
 //? Coding Challenge #1
 
 /*
-We're building a football betting app (soccer for my American friends 😅)!
+We're building a football betting app (soccer for my American friends)!
 
 Suppose we get data from a web service about a certain game (below). In this challenge we're gonna work with the data. So here are your tasks:
 
@@ -175,6 +175,42 @@ const restaurant = {
   },
 };
 
+//? Looping Objects: Object Keys, Values, and Entries
+
+// Property NANMES
+const properties = Object.keys(openingHours);
+console.log(properties);
+
+let openStr = `We are open on ${properties.length} days: `;
+
+for (const day of properties) {
+  openStr += `${day}, `;
+}
+
+console.log(openStr);
+
+// for (const day of Object.keys(openingHours)) {
+//   console.log(day);
+// }
+
+// Property VALUES
+const values = Object.values(openingHours);
+console.log(values);
+
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+// [key, value]
+for (const [key, { open, close }] of entries) {
+  console.log(`On ${key} we open at ${open} and close at ${close}`);
+}
+
+for (const [day, { open, close }] of entries) {
+  console.log(`On ${day} we open at ${open} and close at ${close}`);
+}
+
+/*
+
 //? Optional Chaining (?.)
 // if a certain property does not exist, then undefined is returned immediately.
 // And so that will then avoid that kind of error that we saw earlier.
@@ -215,6 +251,8 @@ console.log(users[0]?.name ?? 'User array empty');
 
 if (users.length > 0) console.log(users[0].name);
 else console.log('user array empty');
+
+*/
 
 //? Enhanced Object Literals
 // 1. openingHours 처럼 밖의 property를 추가
