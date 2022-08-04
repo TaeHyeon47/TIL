@@ -175,6 +175,8 @@ const restaurant = {
   },
 };
 
+// 8월 4일 전체 코드 복습
+
 //? Looping Objects: Object Keys, Values, and Entries
 
 // Property NANMES
