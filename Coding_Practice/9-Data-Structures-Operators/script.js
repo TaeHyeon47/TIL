@@ -342,6 +342,8 @@ else console.log('user array empty');
 
 //? Looping Arrays: The for-of Loop
 // a new way of looping over arrays which was introduced in year six.
+// for-of loop will automatically loop over the entire array and in each iteration,
+// it will give us access to the current array element,
 
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
@@ -351,6 +353,8 @@ for (const item of menu) console.log(item);
 //   // console.log(item);
 //   console.log(`${item[0] + 1} : ${item[1]}`);
 // }
+
+// array에 entries를 붙이면, index와 value로 새로운 배열을 반환.
 
 for (const [i, el] of menu.entries()) {
   console.log(`${i + 1} : ${el}`);
