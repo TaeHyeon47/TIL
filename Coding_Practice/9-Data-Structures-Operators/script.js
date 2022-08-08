@@ -59,7 +59,7 @@ const game = {
   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
   date: 'Nov 9th, 2037',
   odds: {
-    team1: 11.33,
+    team1: 1.33,
     x: 3.25,
     team2: 6.5,
   },
@@ -67,14 +67,33 @@ const game = {
 
 // 1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
 
-// 나의 답변 ㅠㅠ
+// 나의 답변
 // for (const scored of game.scored) {
 //   console.log(`Goal  : ${scored}`);
 // }
 
+// 조나스의 답변
 for (const [i, player] of game.scored.entries()) {
   console.log(`Goal ${i + 1}" ${player}`);
 }
+
+// 2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
+
+//나의 답변
+// const oddValues = Object.values(game.odds);
+// let sum = 0;
+// for (const odd of oddValues) {
+//   sum = sum + odd;
+// }
+// console.log(sum / oddValues.length);
+
+const odds = Object.values(game.odds);
+let average = 0;
+for (const odd of odds) {
+  average += odd;
+}
+average /= odds.length;
+console.log(average);
 
 /////////////////////////////////
 //? Coding Challenge #1
