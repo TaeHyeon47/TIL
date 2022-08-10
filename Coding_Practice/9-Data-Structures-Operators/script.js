@@ -73,9 +73,9 @@ const game = {
 // }
 
 // 조나스의 답변
-for (const [i, player] of game.scored.entries()) {
-  console.log(`Goal ${i + 1}" ${player}`);
-}
+// for (const [i, player] of game.scored.entries()) {
+//   console.log(`Goal ${i + 1}" ${player}`);
+// }
 
 // 2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
 
@@ -88,19 +88,27 @@ for (const [i, player] of game.scored.entries()) {
 // console.log(sum / oddValues.length);
 
 //조나스의 답변
-const odds = Object.values(game.odds);
-let average = 0;
-for (const odd of odds) {
-  average += odd;
-}
-average /= odds.length;
-console.log(average);
+// const odds = Object.values(game.odds);
+// let average = 0;
+// for (const odd of odds) {
+//   average += odd;
+// }
+// average /= odds.length;
+// console.log(average);
 
-// 3.
-for (const [team, odd] of Object.entries(game.odds)) {
-  const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
-  console.log(`Odd of ${teamStr} ${odd}`);
-}
+/* 
+//? 매우 중요한 코드, 복습 필수.
+3. Print the 3 odds to the console, but in a nice formatted way, exaclty like this:
+      Odd of victory Bayern Munich: 1.33
+      Odd of draw: 3.25
+      Odd of victory Borrussia Dortmund: 6.5
+Get the team names directly from the game object, don't hardcode them (except for "draw"). HINT: Note how the odds and the game objects have the same property names 😉
+*/
+
+// for (const [team, odd] of Object.entries(game.odds)) {
+//   const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+//   console.log(`Odd of ${teamStr} ${odd}`);
+// }
 
 /////////////////////////////////
 //? Coding Challenge #1
@@ -225,7 +233,6 @@ const openingHours = {
     open: 11,
     close: 23,
   },
-  //? 아래 방식은 가끔 엄청난 도움이 됨.
   // [`day-${2 + 4}`]: {
   //   open: 0, // Open 24 hours
   //   close: 24,
@@ -277,42 +284,101 @@ const restaurant = {
   },
 };
 
+//? Set
+// In the past, JavaScript has always had very little built-in data structures.
+// So basically, we only had objects and arrays. But in ESX, two more data structures were finally introduced.
+// And that are sets and maps. So these are pretty common data structures that already exists in other programming languages,
+
+// Set메소드 안에는 iterable를 작성해야한다.
+const ordersSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+  'Risotto',
+]);
+
+// 모든 중복 값이 사라진 것을 확인할 수 있다.
+// 중복이 없는 배열과 비슷해보인다. 하지만 배열과 많이 다르다. 이유는 아래와 같다.
+// 1. its elements are unique.
+// 2. the order of elements in the set is irrelevant.
+console.log(ordersSet);
+console.log(new Set('Jonas'));
+// .size는 얼마나 많은 다른 종류의 음식이 있는지를 알려줌(유니크 값)
+// .length와 헷갈리지 않게 주의해야 한다. 아래는 Set에만 사용할 수 있는 함수이다.
+console.log(ordersSet.size);
+console.log(ordersSet.has('Pizza'));
+console.log(ordersSet.has('Bread'));
+ordersSet.add('Garlic Bread');
+ordersSet.add('Garlic Bread');
+// Garlic Bread가 1번만 추가되었다.
+console.log(ordersSet);
+
 // 8월 4일 전체 코드 복습
+
+/*
+
+//? Looping Arrays: The for-of Loop
+// a new way of looping over arrays which was introduced in year six.
+// for-of loop will automatically loop over the entire array and in each iteration,
+// it will give us access to the current array element,
+
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) console.log(item);
+
+// for (const item of menu.entries()) {
+//   // console.log(item);
+//   console.log(`${item[0] + 1} : ${item[1]}`);
+// }
+
+// array에 entries를 붙이면, index와 value로 새로운 배열을 반환.
+
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1} : ${el}`);
+}
+
+console.log(menu.entries());
+console.log([...menu.entries()]);
+
+*/
 
 //? Looping Objects: Object Keys, Values, and Entries
 
 // Property NANMES
-const properties = Object.keys(openingHours);
-console.log(properties);
+// const properties = Object.keys(openingHours);
+// console.log(properties);
 
-let openStr = `We are open on ${properties.length} days: `;
+// let openStr = `We are open on ${properties.length} days: `;
 
-for (const day of properties) {
-  openStr += `${day}, `;
-}
+// for (const day of properties) {
+//   openStr += `${day}, `;
+// }
 
-console.log(openStr);
+// console.log(openStr);
 
 // for (const day of Object.keys(openingHours)) {
 //   console.log(day);
 // }
 
 // Property VALUES
-const values = Object.values(openingHours);
-console.log(values);
+// const values = Object.values(openingHours);
+// console.log(values);
 
-const entries = Object.entries(openingHours);
-console.log(entries);
+// const entries = Object.entries(openingHours);
+// console.log(entries);
 
 // [key, value]
 // 배열의 순서대로 destructuring
-for (const [key, { open, close }] of entries) {
-  console.log(`On ${key} we open at ${open} and close at ${close}`);
-}
+// for (const [key, { open, close }] of entries) {
+//   console.log(`On ${key} we open at ${open} and close at ${close}`);
+// }
 
-for (const [day, { open, close }] of entries) {
-  console.log(`On ${day} we open at ${open} and close at ${close}`);
-}
+// for (const [day, { open, close }] of entries) {
+//   console.log(`On ${day} we open at ${open} and close at ${close}`);
+// }
 
 /*
 
@@ -363,33 +429,6 @@ else console.log('user array empty');
 // 1. openingHours 처럼 밖의 property를 추가
 // 2. order처럼 function을 요약해서 사용 (function expression)
 // 3. we can now actually compute property names instead of having to write them out manually and literally. ex) weekdaysss
-
-/*
-
-//? Looping Arrays: The for-of Loop
-// a new way of looping over arrays which was introduced in year six.
-// for-of loop will automatically loop over the entire array and in each iteration,
-// it will give us access to the current array element,
-
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-
-for (const item of menu) console.log(item);
-
-// for (const item of menu.entries()) {
-//   // console.log(item);
-//   console.log(`${item[0] + 1} : ${item[1]}`);
-// }
-
-// array에 entries를 붙이면, index와 value로 새로운 배열을 반환.
-
-for (const [i, el] of menu.entries()) {
-  console.log(`${i + 1} : ${el}`);
-}
-
-console.log(menu.entries());
-console.log([...menu.entries()]);
-
-*/
 
 /*
 //? Logical Assignment Operators
