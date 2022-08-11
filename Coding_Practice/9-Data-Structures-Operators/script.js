@@ -286,7 +286,7 @@ const restaurant = {
 
 //? Set
 // In the past, JavaScript has always had very little built-in data structures.
-// So basically, we only had objects and arrays. But in ESX, two more data structures were finally introduced.
+// So basically, we only had objects and arrays. But in ES6, two more data structures were finally introduced.
 // And that are sets and maps. So these are pretty common data structures that already exists in other programming languages,
 
 // Set메소드 안에는 iterable를 작성해야한다.
@@ -313,8 +313,22 @@ console.log(ordersSet.has('Pizza'));
 console.log(ordersSet.has('Bread'));
 ordersSet.add('Garlic Bread');
 ordersSet.add('Garlic Bread');
+ordersSet.delete('Risotoo');
 // Garlic Bread가 1번만 추가되었다.
 console.log(ordersSet);
+
+for (const order of ordersSet) console.log(order);
+
+// Example
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+
+console.log(
+  new Set('Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter').size
+);
+
+console.log(new Set('jonasschmedtmann').size);
 
 // 8월 4일 전체 코드 복습
 
