@@ -303,7 +303,7 @@ const ordersSet = new Set([
 // 모든 중복 값이 사라진 것을 확인할 수 있다.
 // 중복이 없는 배열과 비슷해보인다. 하지만 배열과 많이 다르다. 이유는 아래와 같다.
 // 1. its elements are unique.
-// 2. the order of elements in the set is irrelevant.
+// 2. the order of elements in the set is irrelevant(무관한).
 console.log(ordersSet);
 console.log(new Set('Jonas'));
 // .size는 얼마나 많은 다른 종류의 음식이 있는지를 알려줌(유니크 값)
