@@ -284,7 +284,52 @@ const restaurant = {
   },
 };
 
-//? Set
+//? Maps: Fundamentals
+// a map is a data structure that we can use to map values to keys.
+// So, just like an object data is stored in key value pairs in maps.
+// the big difference between objects and maps is that in maps, the keys can have any type and this can be huge.
+// So, in objects, the keys are basically always strings. But in maps, we can have any type of key.
+
+const rest = new Map();
+// this set method is pretty similar to the add method that we had in sets.
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Firenze, Italy');
+console.log(rest.set(2, 'Lisbon, Portugal'));
+
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open :D')
+  .set(false, 'We are closed :(');
+
+console.log(rest.get('name'));
+console.log(rest.get(true));
+console.log(rest.get(1));
+
+// Map에서 Booleans이 아래와 같이 사용될 수 있다.
+const time = 21;
+console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+console.log(rest.has('categories'));
+rest.delete(2);
+rest.clear();
+
+// Primitive value와 Reference value 차이로 인한 결과
+// arr은 같은 메모리를 참조하고 있다.
+const arr = [1, 2];
+rest.set(arr, 'Test');
+rest.set(document.querySelector('h1'), 'Heading');
+console.log(rest);
+console.log(rest.size);
+console.log(rest.get(arr)); // 결과 : Test
+
+rest.set([1, 2], 'Test');
+console.log(rest.get([1, 2])); // 결과 : undefined
+
+/*
+
+//? Set : unique value를 사용하고 싶으면 항상 Set을 사용해야한다.
 // In the past, JavaScript has always had very little built-in data structures.
 // So basically, we only had objects and arrays. But in ES6, two more data structures were finally introduced.
 // And that are sets and maps. So these are pretty common data structures that already exists in other programming languages,
@@ -313,7 +358,8 @@ console.log(ordersSet.has('Pizza'));
 console.log(ordersSet.has('Bread'));
 ordersSet.add('Garlic Bread');
 ordersSet.add('Garlic Bread');
-ordersSet.delete('Risotoo');
+ordersSet.delete('Risotto');
+// ordersSet.clear(); // 안에 내용 모두 삭제
 // Garlic Bread가 1번만 추가되었다.
 console.log(ordersSet);
 
@@ -324,11 +370,15 @@ const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
 const staffUnique = [...new Set(staff)];
 console.log(staffUnique);
 
+// 아래의 코드를 보면 Set은 배열과 다르다는 것을 알 수 있다.
+// sets are not intended to replace arrays at all.
 console.log(
   new Set('Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter').size
-);
+); // 3
 
-console.log(new Set('jonasschmedtmann').size);
+console.log(new Set('jonasschmedtmann').size); // 11
+
+*/
 
 // 8월 4일 전체 코드 복습
 
