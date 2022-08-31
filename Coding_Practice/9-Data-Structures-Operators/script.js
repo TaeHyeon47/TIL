@@ -284,6 +284,45 @@ const restaurant = {
   },
 };
 
+//? Maps: Iteration
+
+// Map을 set으로 세팅하기에는 무겁다. 그래서 아래의 방식으로 사용한다.
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct'],
+  [false, 'Try again!'],
+]);
+console.log(question);
+
+// Object를 Map으로 쉽게 변경할 수 있다.
+console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+
+//* 아래는 아주 중요한 디스트럭쳐링 구문이다.
+console.log(question.get('question'));
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+}
+
+// const answer = Number(prompt('Your answer'));
+const answer = 3;
+console.log(question.get(question.get('correct') === answer));
+
+// Convert map to array
+console.log([...question]);
+console.log(question.entries());
+console.log(question.keys());
+console.log(question.values());
+// MapIterator를 Object로 변경할 수 있다.
+console.log([...question.values()]);
+
+/*
+
 //? Maps: Fundamentals
 // a map is a data structure that we can use to map values to keys.
 // So, just like an object data is stored in key value pairs in maps.
@@ -326,6 +365,8 @@ console.log(rest.get(arr)); // 결과 : Test
 
 rest.set([1, 2], 'Test');
 console.log(rest.get([1, 2])); // 결과 : undefined
+
+*/
 
 /*
 
