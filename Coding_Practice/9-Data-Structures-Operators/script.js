@@ -322,22 +322,44 @@ const gameEvents = new Map([
 const events = [...gameEvents];
 console.log(events);
 
+// 조나스의 답
+const events2 = [...new Set(gameEvents.values())];
+console.log(events2);
+
 // 2.
 gameEvents.delete(64);
 console.log(gameEvents);
+
+// 조나스와 동일
 
 // 3.
 const gameEventskeys = 90 / [...gameEvents.keys()].length;
 console.log(`An event happend, on average, every ${gameEventskeys} minutes`);
 
-// 4.
+// 조나스의 답
+console.log(
+  `An event happend, on average, every ${90 / gameEvents.size} minutes`
+);
+// 보너스 마지막 요소 꺼내기
+const time = [...gameEvents.keys()].pop();
+console.log(time);
+console.log(
+  `An event happend, on average, every ${time / gameEvents.size} minutes`
+);
 
+// 4.
 for (const [key, value] of gameEvents) {
   if (key <= 45) {
     console.log(`[FIRST HALF]${key}: ${value}`);
   } else {
     console.log(`[SECOND HALF]${key}: ${value}`);
   }
+}
+
+// 조나스의 답
+for (const [min, event] of gameEvents) {
+  const half = min <= 45 ? 'FIRST' : 'SECOND';
+  console.log(`[${half} HALF] ${min}: ${event}`);
 }
 
 /*
