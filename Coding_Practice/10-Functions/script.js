@@ -84,32 +84,61 @@ checkIn(flight, jonas);
 
 */
 /////////////////////////////////////////////////////
-/////// Functions Accepting Callback Functions //////
+// Functions Accepting Callback Functions
 /////////////////////////////////////////////////////
 
-const oneWord = function (str) {
-  return str.replace(/ /g, '').toLowerCase();
+// const oneWord = function (str) {
+//   return str.replace(/ /g, '').toLowerCase();
+// };
+
+// const upperFirstWord = function (str) {
+//   const [first, ...others] = str.split(' ');
+//   return [first.toUpperCase(), ...others].join(' ');
+// };
+
+// // Higher-order function
+// const transformer = function (str, fn) {
+//   console.log(`Original string: ${str}`);
+//   console.log(`Transformed string: ${fn(str)}`);
+//   console.log(`Transformed by: ${fn.name}`);
+// };
+
+// transformer('JavaScript is the best!', upperFirstWord);
+// transformer('JavaScript is the best!', oneWord);
+
+// // JS uses callbacks all the time
+// const high5 = function () {
+//   console.log('박수');
+// };
+
+// document.body.addEventListener('click', high5);
+// ['Jonas', 'Martha', 'Adam'].forEach(high5);
+
+/////////////////////////////////////////////////////
+// Functions Returning Functions
+/////////////////////////////////////////////////////
+
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
 };
 
-const upperFirstWord = function (str) {
-  const [first, ...others] = str.split(' ');
-  return [first.toUpperCase(), ...others].join(' ');
-};
+// greeterHey는 function이 된다.
+const greeterHey = greet('Hey');
+// 클로저로 인해 아래와 같이 이상한 코드가 실행된다.
+greeterHey('Jonas');
+greeterHey('Steven');
+greet('Hello')('Jonas');
 
-// Higher-order function
-const transformer = function (str, fn) {
-  console.log(`Original string: ${str}`);
-  console.log(`Transformed string: ${fn(str)}`);
-  console.log(`Transformed by: ${fn.name}`);
-};
+// 에로우 펑션 나의 버전....
+// const greet2 = (greeting) => {
+//   return (name) => {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
 
-transformer('JavaScript is the best!', upperFirstWord);
-transformer('JavaScript is the best!', oneWord);
+// greet2('Hello')('Jonas');
 
-// JS uses callbacks all the time
-const high5 = function () {
-  console.log('박수');
-};
-
-document.body.addEventListener('click', high5);
-['Jonas', 'Martha', 'Adam'].forEach(high5);
+const greetArr = (greeting) => (name) => console.log(`${greeting} ${name}`);
+greetArr('Hi')('Jonas');
