@@ -99,10 +99,17 @@ const upperFirstWord = function (str) {
 // Higher-order function
 const transformer = function (str, fn) {
   console.log(`Original string: ${str}`);
-  console.log(`Transformed string: ${fn}`);
-
+  console.log(`Transformed string: ${fn(str)}`);
   console.log(`Transformed by: ${fn.name}`);
 };
 
 transformer('JavaScript is the best!', upperFirstWord);
 transformer('JavaScript is the best!', oneWord);
+
+// JS uses callbacks all the time
+const high5 = function () {
+  console.log('박수');
+};
+
+document.body.addEventListener('click', high5);
+['Jonas', 'Martha', 'Adam'].forEach(high5);
