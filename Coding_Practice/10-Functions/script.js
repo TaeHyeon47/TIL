@@ -118,27 +118,85 @@ checkIn(flight, jonas);
 // Functions Returning Functions
 /////////////////////////////////////////////////////
 
-const greet = function (greeting) {
-  return function (name) {
-    console.log(`${greeting} ${name}`);
-  };
-};
-
-// greeterHey는 function이 된다.
-const greeterHey = greet('Hey');
-// 클로저로 인해 아래와 같이 이상한 코드가 실행된다.
-greeterHey('Jonas');
-greeterHey('Steven');
-greet('Hello')('Jonas');
-
-// 에로우 펑션 나의 버전....
-// const greet2 = (greeting) => {
-//   return (name) => {
+// const greet = function (greeting) {
+//   return function (name) {
 //     console.log(`${greeting} ${name}`);
 //   };
 // };
 
-// greet2('Hello')('Jonas');
+// // greeterHey는 function이 된다.
+// const greeterHey = greet('Hey');
+// // 클로저로 인해 아래와 같이 이상한 코드가 실행된다.
+// greeterHey('Jonas');
+// greeterHey('Steven');
+// greet('Hello')('Jonas');
 
-const greetArr = (greeting) => (name) => console.log(`${greeting} ${name}`);
-greetArr('Hi')('Jonas');
+// // 에로우 펑션 나의 버전....
+// // const greet2 = (greeting) => {
+// //   return (name) => {
+// //     console.log(`${greeting} ${name}`);
+// //   };
+// // };
+
+// // greet2('Hello')('Jonas');
+
+// const greetArr = (greeting) => (name) => console.log(`${greeting} ${name}`);
+// greetArr('Hi')('Jonas');
+
+/////////////////////////////////////////////////////
+// The call and apply Methods
+/////////////////////////////////////////////////////
+
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+
+  // Original syntax
+  // book: function()
+  // Object literal syntax
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode} ${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode} ${flightNum}`, name });
+  },
+};
+
+lufthansa.book(239, 'Jonas Schmedtmann');
+lufthansa.book(635, 'John Smith');
+// console.log(lufthansa);
+
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+const book = lufthansa.book;
+
+// Does Not Work
+// book(23, 'Sarah Williams');
+
+// Call method
+book.call(eurowings, 23, 'Sarah Williams');
+console.log(eurowings);
+
+book.call(lufthansa, 239, 'Mary Cooper');
+console.log(lufthansa);
+
+const swiss = {
+  airline: 'Swiss Air Lines',
+  iataCode: 'LX',
+  bookings: [],
+};
+
+book.call(swiss, 583, 'Mary Cooper');
+console.log(swiss);
+
+// Apply method (사용 X)
+const flightData = [583, 'George Cooper'];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+book.call(swiss, ...flightData);
