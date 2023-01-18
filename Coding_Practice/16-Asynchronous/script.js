@@ -217,7 +217,6 @@ const countriesContainer = document.querySelector('.countries');
 // btn.addEventListener("click", function () {
 //   getCountryData1("portugal");
 // });
-
 // ////////////////////////////////////////
 // ////// Handling Rejected Promises //////
 // ////////////////////////////////////////
@@ -252,34 +251,34 @@ const countriesContainer = document.querySelector('.countries');
 // 다른 유형의 에러가 반환되고 내가 원하는 에러를 뱉어 내지는 않는다.
 // 또한 fetch function이 reject로 반환 되지도 않는다.
 
-// const getCountryData1 = function (country) {
-//   fetch(`https://restcountries.com/v2/name/${country}`)
-//     .then(
-//       (response) => response.json()
-//       // (err) => alert(err) // We can also pass in a second callback for error
-//       // then 메소드에 두번째 콜백함수로 오류를 잡는 방법은 비효율 적이다.
-//     )
-//     .then((data) => {
-//       renderCountry(data[0]);
-//       const neighbour = data[0].borders[0];
-//       // const neighbour = data[0].borders?.[0];
-//       if (!neighbour) return;
-//       return fetch(`https://restcountries.com/v2/alpha/${neighbour}`); // So always return to promise
-//     })
-//     .then(
-//       (response) => response.json()
-//       // (err) => alert(err)
-//     )
-//     .then((data) => renderCountry(data, "neighbour"))
-//     .catch((err) => {
-//       // chatch를 사용하면 chain의 어디서 오류가 발생하든 모두 관리할 수 있다.
-//       console.error(`${err} 🥲🥲🥲`);
-//       renderError(`Something went wrong 🥲🥲 ${err.message}. Try again `);
-//     })
-//     .finally(() => {
-//       countriesContainer.style.opacity = 1;
-//     });
-// };
+const getCountryData1 = function (country) {
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    .then(
+      (response) => response.json()
+      // (err) => alert(err) // We can also pass in a second callback for error
+      // then 메소드에 두번째 콜백함수로 오류를 잡는 방법은 비효율 적이다.
+    )
+    .then((data) => {
+      renderCountry(data[0]);
+      const neighbour = data[0].borders[0];
+      // const neighbour = data[0].borders?.[0];
+      if (!neighbour) return;
+      return fetch(`https://restcountries.com/v2/alpha/${neighbour}`); // So always return to promise
+    })
+    .then(
+      (response) => response.json()
+      // (err) => alert(err)
+    )
+    .then((data) => renderCountry(data, 'neighbour'))
+    .catch((err) => {
+      // chatch를 사용하면 chain의 어디서 오류가 발생하든 모두 관리할 수 있다.
+      console.error(`${err} 🥲🥲🥲`);
+      renderError(`Something went wrong 🥲🥲 ${err.message}. Try again `);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
+};
 
 // // getCountryData1("portugal");
 
